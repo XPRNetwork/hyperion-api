@@ -29,10 +29,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jafri/hyperion-api.git"
+    "url": "git+https://github.com/jafri/@jafri/hyperion.git"
   },
   "bugs": {
-    "url": "https://github.com/jafri/hyperion-api/issues"
+    "url": "https://github.com/jafri/@jafri/hyperion/issues"
   },
-  "homepage": "https://github.com/jafri/hyperion-api#readme"
+  "homepage": "https://github.com/jafri/@jafri/hyperion#readme"
 }
