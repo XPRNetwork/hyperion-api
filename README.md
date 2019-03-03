@@ -5,13 +5,13 @@
 Using Yarn:
 
 ```
-yarn add hyperion-api
+yarn add @jafri/hyperion
 ```
 
 or using NPM:
 
 ```
-npm install --save hyperion-api
+npm install --save @jafri/hyperion
 ```
 
 ## Quick Start
@@ -19,7 +19,7 @@ npm install --save hyperion-api
 **CommonJS**
 
 ```js
-const { JsonRpc } = require("hyperion-api")
+const { JsonRpc } = require("@jafri/hyperion")
 const fetch = require("isomorphic-fetch")
 
 const endpoint = "https://br.eosrio.io"
@@ -29,7 +29,7 @@ const rpc = new JsonRpc(endpoint, { fetch })
 **TypeScript**
 
 ```ts
-import { JsonRpc } from "hyperion-api"
+import { JsonRpc } from "@jafri/hyperion"
 import fetch from "isomorphic-fetch"
 
 const endpoint = "https://br.eosrio.io"
