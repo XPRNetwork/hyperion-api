@@ -1,0 +1,38 @@
+{
+  "name": "@jafri/hyperion",
+  "version": "1.0.0",
+  "description": "Hyperion HTTP API Javascript library",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prepublishOnly": "tsc",
+    "test": "jest --coverage",
+    "posttest": "tslint -p ."
+  },
+  "author": "Syed Jafri <syed.jafri2@ucalgary.ca>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/isomorphic-fetch": "*",
+    "@types/jest": "^24.0.9",
+    "@types/node": "*",
+    "isomorphic-fetch": "*",
+    "ts-jest": "*",
+    "ts-node": "*",
+    "tslint": "*",
+    "typescript": "*"
+  },
+  "dependencies": {
+    "jest": "^24.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jafri/hyperion-api.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jafri/hyperion-api/issues"
+  },
+  "homepage": "https://github.com/jafri/hyperion-api#readme"
+}
