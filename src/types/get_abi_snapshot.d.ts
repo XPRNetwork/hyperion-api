@@ -1,4 +1,4 @@
-export interface GetAbiSnapshotResponse {
+export interface GetAbiSnapshot {
   version: string;
   types: Type[];
   structs: Struct[];
