@@ -1,4 +1,3 @@
-
 export interface Action {
     act: Act;
     account_ram_deltas?: AccountRAMDelta[];

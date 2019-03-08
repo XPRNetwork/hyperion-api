@@ -1,7 +1,9 @@
 import { Action } from "./action_trace";
+export { GetAbiSnapshotResponse } from "./get_abi_snapshot";
 
-export type AliveResponse = string;
-export type GetAbiSnapshotResponse = string;
+export interface AliveResponse {
+    status: string;
+}
 
 export interface GetActionsResponse {
     query_time: number;
