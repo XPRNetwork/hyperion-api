@@ -112,8 +112,6 @@ HYPERION_ENDPOINT=<Enter Hyperion Endpoint>  # "https://br.eosrio.io"
     -   [get_transfers](#get_transfers-1)
         -   [Parameters](#parameters-16)
         -   [Examples](#examples-18)
--   [Error](#error)
--   [Error](#error-1)
 
 ### JsonRpc
 
@@ -563,7 +561,3 @@ for (const action of response.actions) {
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetTransfers>** transfers
-
-### Error
-
-### Error
