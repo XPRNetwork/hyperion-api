@@ -1,21 +1,41 @@
 import { Action } from "./action_trace";
-export { GetAbiSnapshotResponse } from "./get_abi_snapshot";
+export { GetAbiSnapshot } from "./get_abi_snapshot";
 
-export interface AliveResponse {
+export interface Alive {
     status: string;
 }
 
-export interface GetActionsResponse {
+export interface GetActions {
     query_time: number;
     lib: number;
     actions: Action[];
 }
 
-export interface GetKeyAccountsResponse {
+export interface GetKeyAccounts {
     account_names: string[];
 }
 
-export interface GetTransactedAccountsResponse {
+export interface GetAccountCreator {
+  account: string;
+  creator: string;
+  timestamp: string;
+  trx_id: string;
+}
+
+export interface GetTokens {
+  query_time: number;
+  account: string;
+  tokens: Token[];
+}
+
+export interface Token {
+  symbol: string;
+  precision: number;
+  amount: number;
+  contract: string;
+}
+
+export interface GetTransactedAccounts {
     query_time: number;
     account: string;
     total_in: number;
@@ -29,19 +49,19 @@ export interface Input {
     average: number;
 }
 
-export interface GetTransactionResponse {
+export interface GetTransaction {
     trx_id: string;
     lib: number;
     actions: Action[];
 }
 
-export interface GetTransfersResponse {
+export interface GetTransfers {
     trx_id: string;
     lib: number;
     actions: Action[];
 }
 
-export interface GetTransfersResponse {
+export interface GetTransfers {
     action_count: number;
     total_amount: number;
     actions: Action[];

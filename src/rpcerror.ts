@@ -1,11 +1,10 @@
 /**
+ * @private
  * @module RPC-Error
+ *
+ * copyright defined in eosjs/LICENSE.txt
  */
-// copyright defined in eosjs/LICENSE.txt
-
-/** Holds detailed error information */
 export class RpcError extends Error {
-    /** Detailed error information */
     public json: any;
 
     constructor(json: any) {
@@ -21,8 +20,10 @@ export class RpcError extends Error {
     }
 }
 
+/**
+ * @private
+ */
 export class RpcStatusError extends Error {
-    /** Detailed error information */
     public response: any;
 
     constructor(response: any) {

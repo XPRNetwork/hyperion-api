@@ -1,6 +1,6 @@
-import { V2_ALIVE, V2_GET_ABI_SNAPSHOT, V2_GET_ACTIONS, V2_GET_KEY_ACCOUNTS, V2_GET_TRANSACTED_ACCOUNTS, V2_GET_TRANSACTION, V2_GET_TRANSFERS } from "./endpoints";
+import { V2_ALIVE, V2_GET_ABI_SNAPSHOT, V2_GET_ACTIONS, V2_GET_CREATOR, V2_GET_KEY_ACCOUNTS, V2_GET_TOKENS, V2_GET_TRANSACTED_ACCOUNTS, V2_GET_TRANSACTION, V2_GET_TRANSFERS } from "./endpoints";
 import { RpcError, RpcStatusError } from "./rpcerror";
-import { AliveResponse, GetAbiSnapshotResponse, GetActionsResponse, GetKeyAccountsResponse, GetTransactedAccountsResponse, GetTransactionResponse, GetTransfersResponse } from "./types/api";
+import { Alive, GetAbiSnapshot, GetAccountCreator, GetActions, GetKeyAccounts, GetTransactedAccounts, GetTransaction, GetTransfers } from "./types/api";
 
 function queryParams(params: {[key: string]: any}) {
     const entries = [];
@@ -14,17 +14,19 @@ function queryParams(params: {[key: string]: any}) {
 export type Fetch = (url: string | Request, init?: RequestInit) => Promise<Response>;
 declare const global: any;
 
-/** Make RPC calls */
+/**
+ * JsonRpc
+ *
+ * @param {string} endpoint hyperion endpoint
+ * @example
+ *
+ * const endpoint = "https://br.eosrio.io"
+ * const rpc = new JsonRpc(endpoint, { fetch })
+ */
 export class JsonRpc {
     public endpoint: string;
     public fetchBuiltin: Fetch;
 
-    /**
-     * @param args
-     *    * `fetch`:
-     *    * browsers: leave `null` or `undefined`
-     *    * node: provide an implementation
-     */
     constructor(endpoint: string, args: { fetch?: Fetch } = {}) {
         this.endpoint = endpoint;
         if (args.fetch) {
@@ -34,7 +36,14 @@ export class JsonRpc {
         }
     }
 
-    /** POST `body` to `endpoint + path`. Throws detailed error information in `RpcError` when available. */
+    /**
+     * post
+     *
+     * POST `body` to `endpoint + path`.
+     * Throws detailed error information in `RpcError` when available.
+     *
+     * @private
+     */
     public async post<T>(path: string, body: any): Promise<T> {
         let response;
         let json;
@@ -58,7 +67,14 @@ export class JsonRpc {
         return json;
     }
 
-    /** GET `params` to `endpoint + path`. Throws detailed error information in `RpcError` when available. */
+    /**
+     * get
+     *
+     * GET `params` to `endpoint + path`.
+     * Throws detailed error information in `RpcError` when available.
+     *
+     * @private
+     */
     public async get<T>(path: string, params: any): Promise<T> {
         let response;
         let json;
@@ -92,7 +108,7 @@ export class JsonRpc {
      *
      * simple server healthcheck
      *
-     * @returns {Promise<AliveResponse>} alive
+     * @returns {Promise<Alive>} alive
      * @example
      *
      * const response = await rpc.alive();
@@ -100,7 +116,7 @@ export class JsonRpc {
      * // => {"status": "OK"}
      */
     public alive() {
-        return this.get<AliveResponse>(V2_ALIVE, {});
+        return this.get<Alive>(V2_ALIVE, {});
     }
 
     /**
@@ -110,7 +126,7 @@ export class JsonRpc {
      *
      * @param {string} contract contract account
      * @param {number} number target block
-     * @returns {Promise<GetAbiSnapshotResponse>} abi snapshot
+     * @returns {Promise<GetAbiSnapshot>} abi snapshot
      * @example
      *
      * const response = await rpc.get_abi_snapshot("eosio", 200);
@@ -127,7 +143,7 @@ export class JsonRpc {
             contract,
             block,
         };
-        return this.get<GetAbiSnapshotResponse>(V2_GET_ABI_SNAPSHOT, params);
+        return this.get<GetAbiSnapshot>(V2_GET_ABI_SNAPSHOT, params);
     }
 
     /**
@@ -143,7 +159,7 @@ export class JsonRpc {
      * @param {string} [options.sort] sort direction
      * @param {string} [options.after] filter after specified date (ISO8601)
      * @param {string} [options.before] filter before specified date (ISO8601)
-     * @returns {Promise<GetActionsResponse>} get actions
+     * @returns {Promise<GetActions>} get actions
      * @example
      *
      * const response = await rpc.get_actions("eoscafeblock", {
@@ -174,7 +190,27 @@ export class JsonRpc {
             after: options.after,
             before: options.before,
         };
-        return this.get<GetActionsResponse>(V2_GET_ACTIONS, params);
+        return this.get<GetActions>(V2_GET_ACTIONS, params);
+    }
+
+    /**
+     * GET /v2/history/get_creator
+     *
+     * get account creator
+     *
+     * @param {string} account created account
+     * @returns {Promise<GetAccountCreator>} get creator
+     * @example
+     *
+     * const response = await rpc.get_creator("eosnationftw");
+     * console.log(response);
+     * // => { account: 'eosnationftw', creator: 'gyztcmrvgqge', timestamp: '2018-06-10T13:06:43.500', ... }
+     */
+    public get_creator(account: string) {
+        const params = {
+            account,
+        };
+        return this.get<GetAccountCreator>(V2_GET_CREATOR, params);
     }
 
     /**
@@ -183,7 +219,7 @@ export class JsonRpc {
      * get account by public key
      *
      * @param {string} public_key Contract account targeted by the action.
-     * @returns {Promise<GetKeyAccountsResponse>} key accounts
+     * @returns {Promise<GetKeyAccounts>} key accounts
      * @example
      *
      * const response = await rpc.get_key_accounts("EOS5Mto3Km6BCVxowb6LkkFaT9oaUwLVgswgcxvY4Qgc4rhHry4Tv");
@@ -194,7 +230,29 @@ export class JsonRpc {
         const params = {
             public_key,
         };
-        return this.get<GetKeyAccountsResponse>(V2_GET_KEY_ACCOUNTS, params);
+        return this.get<GetKeyAccounts>(V2_GET_KEY_ACCOUNTS, params);
+    }
+
+    /**
+     * GET /v2/history/get_tokens
+     *
+     * get tokens
+     *
+     * @param {string} account account
+     * @returns {Promise<GetTokens>} get tokens
+     * @example
+     *
+     * const response = await rpc.get_tokens("eosnationftw");
+     * for (const token of response.tokens) {
+     *     console.log(token);
+     *     // => { symbol: 'ZOS', precision: 4, amount: 140, contract: 'zosdiscounts' }
+     * }
+     */
+    public get_tokens(account: string) {
+        const params = {
+            account,
+        };
+        return this.get<any>(V2_GET_TOKENS, params);
     }
 
     /**
@@ -210,7 +268,7 @@ export class JsonRpc {
      * @param {number} [options.min] minimum value
      * @param {number} [options.max] maximum value
      * @param {number} [options.limit] query limit
-     * @returns {Promise<GetTransactedAccountsResponse>} transacted accounts
+     * @returns {Promise<GetTransactedAccounts>} transacted accounts
      * @example
      *
      * const response = await rpc.get_transacted_accounts("eoscafeblock", "in");
@@ -233,7 +291,7 @@ export class JsonRpc {
             max: options.max,
             limit: options.limit,
         };
-        return this.get<GetTransactedAccountsResponse>(V2_GET_TRANSACTED_ACCOUNTS, params);
+        return this.get<GetTransactedAccounts>(V2_GET_TRANSACTED_ACCOUNTS, params);
     }
 
     /**
@@ -242,7 +300,7 @@ export class JsonRpc {
      * get all actions belonging to the same transaction
      *
      * @param {string} id transaction id
-     * @returns {Promise<GetTransactionResponse>} transaction
+     * @returns {Promise<GetTransaction>} transaction
      * @example
      *
      * const response = await rpc.get_transaction("42dacd5722001b734be46a2140917e06cd21d42425f927f506c07b4388b07f62");
@@ -255,7 +313,7 @@ export class JsonRpc {
         const params = {
             id,
         };
-        return this.get<GetTransactionResponse>(V2_GET_TRANSACTION, params);
+        return this.get<GetTransaction>(V2_GET_TRANSACTION, params);
     }
 
     /**
@@ -270,7 +328,7 @@ export class JsonRpc {
      * @param {string} [options.contract] token contract
      * @param {string} [options.after] filter after specified date (ISO8601)
      * @param {string} [options.before] filter before specified date (ISO8601)
-     * @returns {Promise<GetTransfersResponse>} transfers
+     * @returns {Promise<GetTransfers>} transfers
      * @example
      *
      * const response = await rpc.get_transfers({to: "eosnewyorkio"});
@@ -295,6 +353,6 @@ export class JsonRpc {
             after: options.after,
             before: options.before,
         };
-        return this.get<GetTransfersResponse>(V2_GET_TRANSFERS, params);
+        return this.get<GetTransfers>(V2_GET_TRANSFERS, params);
     }
 }

@@ -23,8 +23,18 @@ test("jsonrpc.get_actions", async () => {
     expect(!!response).toBeTruthy();
 });
 
+test("jsonrpc.get_creator", async () => {
+    const response = await rpc.get_creator("eosnationftw");
+    expect(!!response).toBeTruthy();
+});
+
 test("jsonrpc.get_key_accounts", async () => {
     const response = await rpc.get_key_accounts("EOS5Mto3Km6BCVxowb6LkkFaT9oaUwLVgswgcxvY4Qgc4rhHry4Tv");
+    expect(!!response).toBeTruthy();
+});
+
+test("jsonrpc.get_tokens", async () => {
+    const response = await rpc.get_tokens("eosnationftw");
     expect(!!response).toBeTruthy();
 });
 
