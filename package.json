@@ -13,26 +13,21 @@
     "posttest": "tslint -p ."
   },
   "author": "Syed Jafri <syed.jafri2@ucalgary.ca>",
+  "contributors": [
+    "Denis Carriere <denis@eosnation.io>"
+  ],
+  "homepage": "https://github.com/eoscafe/hyperion-api",
   "license": "MIT",
   "devDependencies": {
     "@types/isomorphic-fetch": "*",
-    "@types/jest": "^24.0.9",
+    "@types/jest": "*",
     "@types/node": "*",
+    "jest": "*",
     "isomorphic-fetch": "*",
     "ts-jest": "*",
     "ts-node": "*",
     "tslint": "*",
     "typescript": "*"
   },
-  "dependencies": {
-    "jest": "^24.1.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jafri/@jafri/hyperion.git"
-  },
-  "bugs": {
-    "url": "https://github.com/jafri/@jafri/hyperion/issues"
-  },
-  "homepage": "https://github.com/jafri/@jafri/hyperion#readme"
+  "dependencies": {}
 }
