@@ -132,7 +132,7 @@ const rpc = new JsonRpc(endpoint, { fetch })
 
 #### alive
 
-GET /v2/history/alive
+[GET /v2/history/alive](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_alive)
 
 simple server healthcheck
 
@@ -148,7 +148,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_abi_snapshot
 
-GET /v2/history/get_abi_snapshot
+[GET /v2/history/get_abi_snapshot](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_abi_snapshot)
 
 fetch contract abi at specific block
 
@@ -175,7 +175,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_actions
 
-GET /v2/history/get_actions
+[GET /v2/history/get_actions](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_actions)
 
 get actions based on notified account
 
@@ -209,7 +209,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_creator
 
-GET /v2/history/get_creator
+[GET /v2/history/get_creator](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_creator)
 
 get account creator
 
@@ -229,7 +229,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_key_accounts
 
-GET/v2/history/get_key_accounts
+[GET/v2/history/get_key_accounts](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_key_accounts)
 
 get account by public key
 
@@ -249,7 +249,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_tokens
 
-GET /v2/history/get_tokens
+[GET /v2/history/get_tokens](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_tokens)
 
 get tokens
 
@@ -271,7 +271,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_transacted_accounts
 
-GET /v2/history/get_transacted_accounts
+[GET /v2/history/get_transacted_accounts](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_transacted_accounts)
 
 get all account that interacted with the source account provided
 
@@ -298,7 +298,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_transaction
 
-GET /v2/history/get_transaction
+[GET /v2/history/get_transaction](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_transaction)
 
 get all actions belonging to the same transaction
 
@@ -320,7 +320,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_transfers
 
-GET /v2/history/get_transfers
+[GET /v2/history/get_transfers](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_transfers)
 
 get token transfers utilizing the eosio.token standard
 
@@ -350,7 +350,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### alive
 
-GET /v2/history/alive
+[GET /v2/history/alive](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_alive)
 
 simple server healthcheck
 
@@ -366,7 +366,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_abi_snapshot
 
-GET /v2/history/get_abi_snapshot
+[GET /v2/history/get_abi_snapshot](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_abi_snapshot)
 
 fetch contract abi at specific block
 
@@ -393,7 +393,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_actions
 
-GET /v2/history/get_actions
+[GET /v2/history/get_actions](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_actions)
 
 get actions based on notified account
 
@@ -427,7 +427,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_creator
 
-GET /v2/history/get_creator
+[GET /v2/history/get_creator](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_creator)
 
 get account creator
 
@@ -447,7 +447,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_key_accounts
 
-GET/v2/history/get_key_accounts
+[GET/v2/history/get_key_accounts](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_key_accounts)
 
 get account by public key
 
@@ -467,7 +467,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_tokens
 
-GET /v2/history/get_tokens
+[GET /v2/history/get_tokens](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_tokens)
 
 get tokens
 
@@ -489,7 +489,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_transacted_accounts
 
-GET /v2/history/get_transacted_accounts
+[GET /v2/history/get_transacted_accounts](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_transacted_accounts)
 
 get all account that interacted with the source account provided
 
@@ -516,7 +516,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_transaction
 
-GET /v2/history/get_transaction
+[GET /v2/history/get_transaction](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_transaction)
 
 get all actions belonging to the same transaction
 
@@ -538,7 +538,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_transfers
 
-GET /v2/history/get_transfers
+[GET /v2/history/get_transfers](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_transfers)
 
 get token transfers utilizing the eosio.token standard
 
