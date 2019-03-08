@@ -189,7 +189,7 @@ export class JsonRpc {
         transfer_from?: string,
         transfer_symbol?: string,
         act_name?: string,
-        act_account?: string
+        act_account?: string,
     } = {}) {
         const params = {
             account,
@@ -199,11 +199,11 @@ export class JsonRpc {
             sort: options.sort,
             after: options.after,
             before: options.before,
-            ['transfer.to']: options.transfer_to,
-            ['transfer.from']: options.transfer_from,
-            ['transfer.symbol']: options.transfer_symbol,
-            ['act.name']: options.act_name,
-            ['act.account']: options.act_account
+            ["transfer.to"]: options.transfer_to,
+            ["transfer.from"]: options.transfer_from,
+            ["transfer.symbol"]: options.transfer_symbol,
+            ["act.name"]: options.act_name,
+            ["act.account"]: options.act_account,
         };
         return this.get<GetActions>(V2_GET_ACTIONS, params);
     }
