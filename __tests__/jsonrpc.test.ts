@@ -4,10 +4,10 @@ import { JsonRpc } from "../";
 const endpoint = process.env.HYPERION_ENDPOINT || "https://br.eosrio.io";
 const rpc = new JsonRpc(endpoint, { fetch });
 
-// test("jsonrpc.alive", async () => {
-//     const response = await rpc.alive();
-//     expect(!!response).toBeTruthy();
-// });
+test("jsonrpc.alive", async () => {
+    const response = await rpc.alive();
+    expect(!!response).toBeTruthy();
+});
 
 test("jsonrpc.get_abi_snapshot", async () => {
     const response = await rpc.get_abi_snapshot("eosio", 200);
@@ -42,5 +42,15 @@ test("jsonrpc.get_transfers", async () => {
     const response = await rpc.get_transfers({
         to: "eosnewyorkio"
     });
+    expect(!!response).toBeTruthy();
+});
+
+test("jsonrpc.get_creator", async () => {
+    const response = await rpc.get_creator("eoscafeblock");
+    expect(!!response).toBeTruthy();
+});
+
+test("jsonrpc.get_tokens", async () => {
+    const response = await rpc.get_tokens("eoscafeblock");
     expect(!!response).toBeTruthy();
 });
