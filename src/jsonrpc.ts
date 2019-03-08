@@ -91,8 +91,15 @@ export class JsonRpc {
      * GET /v2/history/alive
      *
      * simple server healthcheck
+     *
+     * @returns {Promise<AliveResponse>} alive
+     * @example
+     *
+     * const response = await rpc.alive();
+     * console.log(response);
+     * // => {"status": "OK"}
      */
-    public async alive() {
+    public alive() {
         return this.get<AliveResponse>(V2_ALIVE, {});
     }
 
@@ -102,14 +109,25 @@ export class JsonRpc {
      * fetch contract abi at specific block
      *
      * @param {string} contract contract account
-     * @param {string} number target block
+     * @param {number} number target block
+     * @returns {Promise<GetAbiSnapshotResponse>} abi snapshot
+     * @example
+     *
+     * const response = await rpc.get_abi_snapshot("eosio", 200);
+     * console.log(response.version);
+     * // => "eosio::abi/1.0"
+     *
+     * for (const table of response.tables) {
+     *     console.log(table);
+     *     // => { name: 'producers', index_type: 'i64', key_names: [ 'owner' ], key_types: [ 'uint64' ], type: 'producer_info' }
+     * }
      */
-    public async get_abi_snapshot(contract: string, block: number) {
+    public get_abi_snapshot(contract: string, block: number) {
         const params = {
             contract,
             block,
         };
-        return await this.get<GetAbiSnapshotResponse>(V2_GET_ABI_SNAPSHOT, params);
+        return this.get<GetAbiSnapshotResponse>(V2_GET_ABI_SNAPSHOT, params);
     }
 
     /**
@@ -125,8 +143,21 @@ export class JsonRpc {
      * @param {string} [options.sort] sort direction
      * @param {string} [options.after] filter after specified date (ISO8601)
      * @param {string} [options.before] filter before specified date (ISO8601)
+     * @returns {Promise<GetActionsResponse>} get actions
+     * @example
+     *
+     * const response = await rpc.get_actions("eoscafeblock", {
+     *     filter: "eosio.token:*",
+     *     skip: 100,
+     *     limit: 100,
+     * });
+     *
+     * for (const action of response.actions) {
+     *     console.log(action);
+     *     // => { act: { account: 'eosio.token', name: 'transfer', ... } }
+     * }
      */
-    public async get_actions(account: string, options: {
+    public get_actions(account: string, options: {
         filter?: string,
         skip?: number,
         limit?: number,
@@ -143,7 +174,7 @@ export class JsonRpc {
             after: options.after,
             before: options.before,
         };
-        return await this.get<GetActionsResponse>(V2_GET_ACTIONS, params);
+        return this.get<GetActionsResponse>(V2_GET_ACTIONS, params);
     }
 
     /**
@@ -152,12 +183,18 @@ export class JsonRpc {
      * get account by public key
      *
      * @param {string} public_key Contract account targeted by the action.
+     * @returns {Promise<GetKeyAccountsResponse>} key accounts
+     * @example
+     *
+     * const response = await rpc.get_key_accounts("EOS5Mto3Km6BCVxowb6LkkFaT9oaUwLVgswgcxvY4Qgc4rhHry4Tv");
+     * console.log(response.account_names);
+     * // => [ 'eoscafeblock' ]
      */
-    public async get_key_accounts(public_key: string) {
+    public get_key_accounts(public_key: string) {
         const params = {
             public_key,
         };
-        return await this.get<GetKeyAccountsResponse>(V2_GET_KEY_ACCOUNTS, params);
+        return this.get<GetKeyAccountsResponse>(V2_GET_KEY_ACCOUNTS, params);
     }
 
     /**
@@ -173,8 +210,14 @@ export class JsonRpc {
      * @param {number} [options.min] minimum value
      * @param {number} [options.max] maximum value
      * @param {number} [options.limit] query limit
+     * @returns {Promise<GetTransactedAccountsResponse>} transacted accounts
+     * @example
+     *
+     * const response = await rpc.get_transacted_accounts("eoscafeblock", "in");
+     * console.log(response);
+     * // => { query_time: 268, account: 'eoscafeblock', total_in: 1092369.1827, inputs: [ ... ] }
      */
-    public async get_transacted_accounts(account: string, direction: string, options: {
+    public get_transacted_accounts(account: string, direction: string, options: {
         symbol?: string,
         contract?: string,
         min?: number,
@@ -190,7 +233,7 @@ export class JsonRpc {
             max: options.max,
             limit: options.limit,
         };
-        return await this.get<GetTransactedAccountsResponse>(V2_GET_TRANSACTED_ACCOUNTS, params);
+        return this.get<GetTransactedAccountsResponse>(V2_GET_TRANSACTED_ACCOUNTS, params);
     }
 
     /**
@@ -199,12 +242,20 @@ export class JsonRpc {
      * get all actions belonging to the same transaction
      *
      * @param {string} id transaction id
+     * @returns {Promise<GetTransactionResponse>} transaction
+     * @example
+     *
+     * const response = await rpc.get_transaction("42dacd5722001b734be46a2140917e06cd21d42425f927f506c07b4388b07f62");
+     * for (const action of response.actions) {
+     *     console.log(action);
+     *     // => { act: { account: 'eosio', name: 'buyrambytes', ... }}
+     * }
      */
-    public async get_transaction(id: string) {
+    public get_transaction(id: string) {
         const params = {
             id,
         };
-        return await this.get<GetTransactionResponse>(V2_GET_TRANSACTION, params);
+        return this.get<GetTransactionResponse>(V2_GET_TRANSACTION, params);
     }
 
     /**
@@ -219,8 +270,16 @@ export class JsonRpc {
      * @param {string} [options.contract] token contract
      * @param {string} [options.after] filter after specified date (ISO8601)
      * @param {string} [options.before] filter before specified date (ISO8601)
+     * @returns {Promise<GetTransfersResponse>} transfers
+     * @example
+     *
+     * const response = await rpc.get_transfers({to: "eosnewyorkio"});
+     * for (const action of response.actions) {
+     *     console.log(action.act.data);
+     *     // => { from: 'eosio.bpay', to: 'eosnewyorkio', amount: 326.524, symbol: 'EOS', memo: 'producer block pay' }
+     * }
      */
-    public async get_transfers(options: {
+    public get_transfers(options: {
         from?: string
         to?: string
         symbol?: string
@@ -236,6 +295,6 @@ export class JsonRpc {
             after: options.after,
             before: options.before,
         };
-        return await this.get<GetTransfersResponse>(V2_GET_TRANSFERS, params);
+        return this.get<GetTransfersResponse>(V2_GET_TRANSFERS, params);
     }
 }
