@@ -1,6 +1,6 @@
-import { V2_ALIVE, V2_GET_ABI_SNAPSHOT, V2_GET_ACTIONS, V2_GET_KEY_ACCOUNTS, V2_GET_TRANSACTED_ACCOUNTS, V2_GET_TRANSACTION, V2_GET_TRANSFERS } from './endpoints';
+import { V2_ALIVE, V2_GET_ABI_SNAPSHOT, V2_GET_ACTIONS, V2_GET_KEY_ACCOUNTS, V2_GET_TRANSACTED_ACCOUNTS, V2_GET_TRANSACTION, V2_GET_TRANSFERS } from "./endpoints";
 import { RpcError, RpcStatusError } from "./rpcerror";
-import { AliveResponse, GetAbiSnapshotResponse, GetActionsResponse, GetKeyAccountsResponse, GetTransactedAccountsResponse, GetTransactionResponse, GetTransfersResponse } from './types/api';
+import { AliveResponse, GetAbiSnapshotResponse, GetActionsResponse, GetKeyAccountsResponse, GetTransactedAccountsResponse, GetTransactionResponse, GetTransfersResponse } from "./types/api";
 
 function queryParams(params: {[key: string]: any}) {
     const entries = [];
@@ -92,8 +92,8 @@ export class JsonRpc {
      *
      * simple server healthcheck
      */
-    public async alive () {
-        return this.get<AliveResponse>(V2_ALIVE, {})
+    public async alive() {
+        return this.get<AliveResponse>(V2_ALIVE, {});
     }
 
     /**
@@ -104,10 +104,10 @@ export class JsonRpc {
      * @param {string} contract contract account
      * @param {string} number target block
      */
-    public async get_abi_snapshot (contract: string, block: number) {
+    public async get_abi_snapshot(contract: string, block: number) {
         const params = {
             contract,
-            block
+            block,
         };
         return await this.get<GetAbiSnapshotResponse>(V2_GET_ABI_SNAPSHOT, params);
     }
@@ -132,7 +132,7 @@ export class JsonRpc {
         limit?: number,
         sort?: string,
         after?: string,
-        before?: string
+        before?: string,
     } = {}) {
         const params = {
             account,
@@ -141,7 +141,7 @@ export class JsonRpc {
             limit: options.limit,
             sort: options.sort,
             after: options.after,
-            before: options.before
+            before: options.before,
         };
         return await this.get<GetActionsResponse>(V2_GET_ACTIONS, params);
     }
@@ -155,7 +155,7 @@ export class JsonRpc {
      */
     public async get_key_accounts(public_key: string) {
         const params = {
-            public_key
+            public_key,
         };
         return await this.get<GetKeyAccountsResponse>(V2_GET_KEY_ACCOUNTS, params);
     }
@@ -188,7 +188,7 @@ export class JsonRpc {
             contract: options.contract,
             min: options.min,
             max: options.max,
-            limit: options.limit
+            limit: options.limit,
         };
         return await this.get<GetTransactedAccountsResponse>(V2_GET_TRANSACTED_ACCOUNTS, params);
     }
@@ -202,7 +202,7 @@ export class JsonRpc {
      */
     public async get_transaction(id: string) {
         const params = {
-            id
+            id,
         };
         return await this.get<GetTransactionResponse>(V2_GET_TRANSACTION, params);
     }
@@ -226,7 +226,7 @@ export class JsonRpc {
         symbol?: string
         contract?: string
         after?: string,
-        before?: string
+        before?: string,
     } = {}) {
         const params = {
             from: options.from,
@@ -234,7 +234,7 @@ export class JsonRpc {
             symbol: options.symbol,
             contract: options.contract,
             after: options.after,
-            before: options.before
+            before: options.before,
         };
         return await this.get<GetTransfersResponse>(V2_GET_TRANSFERS, params);
     }
