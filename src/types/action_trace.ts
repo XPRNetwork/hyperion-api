@@ -1,29 +1,29 @@
 
 export interface Action {
-    act:                 Act;
+    act: Act;
     account_ram_deltas?: AccountRAMDelta[];
-    "@timestamp":        Date;
-    block_num:           number;
-    producer:            string;
-    trx_id:              string;
-    parent:              number;
-    global_sequence:     number;
-    notified:            string[];
+    "@timestamp": Date;
+    block_num: number;
+    producer: string;
+    trx_id: string;
+    parent: number;
+    global_sequence: number;
+    notified: string[];
 }
 
 export interface AccountRAMDelta {
     account: string;
-    delta:   string;
+    delta: string;
 }
 
 export interface Act {
-    account:       string;
-    name:          string;
+    account: string;
+    name: string;
     authorization: Authorization[];
-    data:          any;
+    data: any;
 }
 
 export interface Authorization {
-    actor:      string;
+    actor: string;
     permission: string;
 }

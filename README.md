@@ -51,4 +51,6 @@ HYPERION_ENDPOINT=<Enter Hyperion Endpoint>  # "https://br.eosrio.io"
 /v2/history/get_transacted_accounts
 /v2/history/get_transaction
 /v2/history/get_transfers
+/v2/history/get_creator
+/v2/history/get_tokens
 ```

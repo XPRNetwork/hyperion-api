@@ -5,3 +5,5 @@ export const V2_GET_KEY_ACCOUNTS = "/v2/history/get_key_accounts";
 export const V2_GET_TRANSACTED_ACCOUNTS = "/v2/history/get_transacted_accounts";
 export const V2_GET_TRANSACTION = "/v2/history/get_transaction";
 export const V2_GET_TRANSFERS = "/v2/history/get_transfers";
+export const V2_GET_CREATOR = "/v2/history/get_creator";
+export const V2_GET_TOKENS = "/v2/history/get_tokens";
