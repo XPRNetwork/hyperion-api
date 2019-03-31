@@ -1,68 +1,14 @@
-import { Action } from "./action_trace";
-export { GetAbiSnapshot } from "./get_abi_snapshot";
+// History
+export { GetAbiSnapshot } from "./history/get_abi_snapshot";
+export { GetActions } from "./history/get_actions";
+export { GetCreatedAccounts } from "./history/get_created_accounts";
+export { GetCreator } from "./history/get_creator";
+export { GetDeltas } from "./history/get_deltas";
+export { GetTransactedAccounts } from "./history/get_transacted_accounts";
+export { GetTransaction } from "./history/get_transaction";
+export { GetTransfers } from "./history/get_transfers";
 
-export interface Alive {
-    status: string;
-}
-
-export interface GetActions {
-    query_time: number;
-    lib: number;
-    actions: Action[];
-}
-
-export interface GetKeyAccounts {
-    account_names: string[];
-}
-
-export interface GetAccountCreator {
-  account: string;
-  creator: string;
-  timestamp: string;
-  trx_id: string;
-}
-
-export interface GetTokens {
-  query_time: number;
-  account: string;
-  tokens: Token[];
-}
-
-export interface Token {
-  symbol: string;
-  precision: number;
-  amount: number;
-  contract: string;
-}
-
-export interface GetTransactedAccounts {
-    query_time: number;
-    account: string;
-    total_in: number;
-    inputs: Input[];
-}
-
-export interface Input {
-    account: string;
-    sum: number;
-    transfers: number;
-    average: number;
-}
-
-export interface GetTransaction {
-    trx_id: string;
-    lib: number;
-    actions: Action[];
-}
-
-export interface GetTransfers {
-    trx_id: string;
-    lib: number;
-    actions: Action[];
-}
-
-export interface GetTransfers {
-    action_count: number;
-    total_amount: number;
-    actions: Action[];
-}
+// State
+export { Alive } from "./state/alive";
+export { GetKeyAccounts } from "./state/get_key_accounts";
+export { GetTokens } from "./state/get_tokens";

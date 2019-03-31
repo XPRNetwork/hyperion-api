@@ -1,5 +1,5 @@
-export interface Action {
-    act: Act;
+export interface Action<T> {
+    act: Act<T>;
     account_ram_deltas?: AccountRAMDelta[];
     "@timestamp": Date;
     block_num: number;
@@ -15,11 +15,11 @@ export interface AccountRAMDelta {
     delta: string;
 }
 
-export interface Act {
+export interface Act<T> {
     account: string;
     name: string;
     authorization: Authorization[];
-    data: any;
+    data: T;
 }
 
 export interface Authorization {
