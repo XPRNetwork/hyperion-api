@@ -130,7 +130,7 @@ const rpc = new JsonRpc(endpoint, { fetch })
 
 #### alive
 
-[GET /v2/state/alive](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_alive)
+[GET /v2/state/alive](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_alive)
 
 simple server healthcheck
 
@@ -146,7 +146,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_abi_snapshot
 
-[GET /v2/history/get_abi_snapshot](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_abi_snapshot)
+[GET /v2/history/get_abi_snapshot](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_abi_snapshot)
 
 fetch contract abi at specific block
 
@@ -173,7 +173,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_actions
 
-[GET /v2/history/get_actions](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_actions)
+[GET /v2/history/get_actions](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_actions)
 
 get actions based on notified account
 
@@ -187,6 +187,11 @@ get actions based on notified account
     -   `options.sort` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** sort direction
     -   `options.after` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter after specified date (ISO8601)
     -   `options.before` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter before specified date (ISO8601)
+    -   `options.transfer_to` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** transfer filter to
+    -   `options.transfer_from` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** transfer filter from
+    -   `options.transfer_symbol` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** transfer filter symbol
+    -   `options.act_name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** act name
+    -   `options.act_account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** act account
 
 ##### Examples
 
@@ -207,7 +212,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_creator
 
-[GET /v2/history/get_creator](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_creator)
+[GET /v2/history/get_creator](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_creator)
 
 get account creator
 
@@ -227,7 +232,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_key_accounts
 
-[GET/v2/state/get_key_accounts](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_key_accounts)
+[GET/v2/state/get_key_accounts](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_get_key_accounts)
 
 get account by public key
 
@@ -247,7 +252,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_tokens
 
-[GET /v2/state/get_tokens](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_tokens)
+[GET /v2/state/get_tokens](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_get_tokens)
 
 get tokens
 
@@ -269,7 +274,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_transacted_accounts
 
-[GET /v2/history/get_transacted_accounts](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_transacted_accounts)
+[GET /v2/history/get_transacted_accounts](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transacted_accounts)
 
 get all account that interacted with the source account provided
 
@@ -296,7 +301,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_transaction
 
-[GET /v2/history/get_transaction](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_transaction)
+[GET /v2/history/get_transaction](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transaction)
 
 get all actions belonging to the same transaction
 
@@ -318,7 +323,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_transfers
 
-[GET /v2/history/get_transfers](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_transfers)
+[GET /v2/history/get_transfers](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transfers)
 
 get token transfers utilizing the eosio.token standard
 
@@ -348,7 +353,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### alive
 
-[GET /v2/state/alive](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_alive)
+[GET /v2/state/alive](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_alive)
 
 simple server healthcheck
 
@@ -364,7 +369,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_abi_snapshot
 
-[GET /v2/history/get_abi_snapshot](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_abi_snapshot)
+[GET /v2/history/get_abi_snapshot](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_abi_snapshot)
 
 fetch contract abi at specific block
 
@@ -391,7 +396,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_actions
 
-[GET /v2/history/get_actions](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_actions)
+[GET /v2/history/get_actions](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_actions)
 
 get actions based on notified account
 
@@ -405,6 +410,11 @@ get actions based on notified account
     -   `options.sort` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** sort direction
     -   `options.after` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter after specified date (ISO8601)
     -   `options.before` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter before specified date (ISO8601)
+    -   `options.transfer_to` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** transfer filter to
+    -   `options.transfer_from` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** transfer filter from
+    -   `options.transfer_symbol` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** transfer filter symbol
+    -   `options.act_name` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** act name
+    -   `options.act_account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** act account
 
 ##### Examples
 
@@ -425,7 +435,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_creator
 
-[GET /v2/history/get_creator](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_creator)
+[GET /v2/history/get_creator](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_creator)
 
 get account creator
 
@@ -445,7 +455,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_key_accounts
 
-[GET/v2/state/get_key_accounts](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_key_accounts)
+[GET/v2/state/get_key_accounts](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_get_key_accounts)
 
 get account by public key
 
@@ -465,7 +475,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_tokens
 
-[GET /v2/state/get_tokens](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_tokens)
+[GET /v2/state/get_tokens](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_get_tokens)
 
 get tokens
 
@@ -487,7 +497,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_transacted_accounts
 
-[GET /v2/history/get_transacted_accounts](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_transacted_accounts)
+[GET /v2/history/get_transacted_accounts](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transacted_accounts)
 
 get all account that interacted with the source account provided
 
@@ -514,7 +524,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_transaction
 
-[GET /v2/history/get_transaction](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_transaction)
+[GET /v2/history/get_transaction](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transaction)
 
 get all actions belonging to the same transaction
 
@@ -536,7 +546,7 @@ Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/
 
 #### get_transfers
 
-[GET /v2/history/get_transfers](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_transfers)
+[GET /v2/history/get_transfers](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transfers)
 
 get token transfers utilizing the eosio.token standard
 
