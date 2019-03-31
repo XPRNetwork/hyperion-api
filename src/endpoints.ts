@@ -1,7 +1,9 @@
+// State
 export const V2_ALIVE = "/v2/state/alive";
 export const V2_GET_KEY_ACCOUNTS = "/v2/state/get_key_accounts";
 export const V2_GET_TOKENS = "/v2/state/get_tokens";
 
+// History
 export const V2_GET_ABI_SNAPSHOT = "/v2/history/get_abi_snapshot";
 export const V2_GET_ACTIONS = "/v2/history/get_actions";
 export const V2_GET_CREATOR = "/v2/history/get_creator";
