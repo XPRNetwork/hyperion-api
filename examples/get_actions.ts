@@ -1,8 +1,7 @@
 import { rpc } from "./rpc";
 
 (async () => {
-    const response = await rpc.get_actions({
-        account: "eoscafeblock",
+    const response = await rpc.get_actions("eoscafeblock", {
         filter: "eosio.token:*",
         skip: 100,
         limit: 100,
