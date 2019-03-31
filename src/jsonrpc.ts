@@ -1,6 +1,6 @@
-import { V2_ALIVE, V2_GET_ABI_SNAPSHOT, V2_GET_ACTIONS, V2_GET_CREATOR, V2_GET_KEY_ACCOUNTS, V2_GET_TOKENS, V2_GET_TRANSACTED_ACCOUNTS, V2_GET_TRANSACTION, V2_GET_TRANSFERS } from "./endpoints";
+import { V2_ALIVE, V2_GET_ABI_SNAPSHOT, V2_GET_ACTIONS, V2_GET_CREATOR, V2_GET_KEY_ACCOUNTS, V2_GET_TOKENS, V2_GET_TRANSACTED_ACCOUNTS, V2_GET_TRANSACTION, V2_GET_TRANSFERS, V2_GET_CREATED_ACCOUNTS, V2_GET_DELTAS } from "./endpoints";
 import { RpcError, RpcStatusError } from "./rpcerror";
-import { Alive, GetAbiSnapshot, GetAccountCreator, GetActions, GetKeyAccounts, GetTokens, GetTransactedAccounts, GetTransaction, GetTransfers } from "./types/api";
+import { Alive, GetAbiSnapshot, GetCreatedAccounts, GetDeltas, GetCreator, GetActions, GetKeyAccounts, GetTokens, GetTransactedAccounts, GetTransaction, GetTransfers } from "./types/api";
 
 function queryParams(params: {[key: string]: any}) {
     const entries = [];
@@ -178,7 +178,7 @@ export class JsonRpc {
      *     // => { act: { account: 'eosio.token', name: 'transfer', ... } }
      * }
      */
-    public get_actions(account: string, options: {
+    public get_actions<T>(account: string, options: {
         filter?: string,
         skip?: number,
         limit?: number,
@@ -205,16 +205,36 @@ export class JsonRpc {
             ["act.name"]: options.act_name,
             ["act.account"]: options.act_account,
         };
-        return this.get<GetActions>(V2_GET_ACTIONS, params);
+        return this.get<GetActions<T>>(V2_GET_ACTIONS, params);
+    }
+
+    /**
+     * [GET /v2/history/get_created_accounts](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_created_accounts)
+     *
+     * get created accounts
+     *
+     * @param {string} account created account
+     * @returns {Promise<GetCreatedAccounts>} get creator
+     * @example
+     *
+     * const response = await rpc.get_created_accounts("eosnationftw");
+     * console.log(response);
+     * // => {"accounts": [{"name":"eosnationdsp","trx_id":"728d4a4da36a98d9048080461dacaf975ad083e8158ef84edea60cc755ab2c1a","timestamp":"2019-02-28T22:36:45.000"}, ... ]}
+     */
+    public get_created_accounts(account: string) {
+        const params = {
+            account,
+        };
+        return this.get<GetCreatedAccounts>(V2_GET_CREATED_ACCOUNTS, params);
     }
 
     /**
      * [GET /v2/history/get_creator](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_creator)
      *
-     * get account creator
+     * get creator
      *
      * @param {string} account created account
-     * @returns {Promise<GetAccountCreator>} get creator
+     * @returns {Promise<GetCreator>} get creator
      * @example
      *
      * const response = await rpc.get_creator("eosnationftw");
@@ -225,7 +245,33 @@ export class JsonRpc {
         const params = {
             account,
         };
-        return this.get<GetAccountCreator>(V2_GET_CREATOR, params);
+        return this.get<GetCreator>(V2_GET_CREATOR, params);
+    }
+
+    /**
+     * [GET /v2/history/get_deltas](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_deltas)
+     *
+     * get deltas
+     *
+     * @param {string} code contract account
+     * @param {string} scope table scope
+     * @param {string} table table name
+     * @param {string} payer payer account
+     * @returns {Promise<GetDeltas>} get deltas
+     * @example
+     *
+     * const response = await rpc.get_deltas("eosio.token", "eosnationftw", "accounts", "eosnationftw");
+     * console.log(response);
+     * // => { "query_time": 19, "total": { "value": 486, "relation": "eq" }, "deltas": [ ... ] }
+     */
+    public get_deltas<T>(code: string, scope: string, table: string, payer: string) {
+        const params = {
+            code,
+            scope,
+            table,
+            payer,
+        };
+        return this.get<GetDeltas<T>>(V2_GET_DELTAS, params);
     }
 
     /**
@@ -324,11 +370,11 @@ export class JsonRpc {
      *     // => { act: { account: 'eosio', name: 'buyrambytes', ... }}
      * }
      */
-    public get_transaction(id: string) {
+    public get_transaction<T>(id: string) {
         const params = {
             id,
         };
-        return this.get<GetTransaction>(V2_GET_TRANSACTION, params);
+        return this.get<GetTransaction<T>>(V2_GET_TRANSACTION, params);
     }
 
     /**

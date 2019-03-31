@@ -64,3 +64,13 @@ test("jsonrpc.get_tokens", async () => {
     const response = await rpc.get_tokens("eoscafeblock");
     expect(!!response).toBeTruthy();
 });
+
+test("jsonrpc.get_deltas", async () => {
+    const response = await rpc.get_deltas("eosio.token", "eosnationftw", "accounts", "eosnationftw");
+    expect(!!response).toBeTruthy();
+});
+
+test("jsonrpc.get_created_accounts", async () => {
+    const response = await rpc.get_created_accounts("eosnationftw");
+    expect(!!response).toBeTruthy();
+});

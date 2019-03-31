@@ -4,11 +4,15 @@
 
 Using Yarn:
 
-    yarn add @jafri/hyperion
+```bash
+yarn add @jafri/hyperion
+```
 
 or using NPM:
 
-    npm install --save @jafri/hyperion
+```bash
+npm install --save @jafri/hyperion
+```
 
 ## Quick Start
 
@@ -18,7 +22,7 @@ or using NPM:
 const { JsonRpc } = require("@jafri/hyperion")
 const fetch = require("isomorphic-fetch")
 
-const endpoint = "https://br.eosrio.io"
+const endpoint = "https://eos.hyperion.eosrio.io"
 const rpc = new JsonRpc(endpoint, { fetch })
 ```
 
@@ -28,27 +32,34 @@ const rpc = new JsonRpc(endpoint, { fetch })
 import { JsonRpc } from "@jafri/hyperion"
 import fetch from "isomorphic-fetch"
 
-const endpoint = "https://br.eosrio.io"
+const endpoint = "https://eos.hyperion.eosrio.io"
 const rpc = new JsonRpc(endpoint, { fetch })
 ```
 
 ## ENV Variables
 
 ```bash
-HYPERION_ENDPOINT=<Enter Hyperion Endpoint>  # "https://br.eosrio.io"
+HYPERION_ENDPOINT=<Enter Hyperion Endpoint>  # "https://eos.hyperion.eosrio.io"
 ```
 
 ## Supported Endpoints
 
-    /v2/state/alive
-    /v2/history/get_abi_snapshot
-    /v2/history/get_actions
-    /v2/history/get_creator
-    /v2/state/get_key_accounts
-    /v2/state/get_tokens
-    /v2/history/get_transacted_accounts
-    /v2/history/get_transaction
-    /v2/history/get_transfers
+```bash
+# State
+/v2/state/alive
+/v2/state/get_key_accounts
+/v2/state/get_tokens
+
+# History
+/v2/history/get_abi_snapshot
+/v2/history/get_actions
+/v2/history/get_created_accounts
+/v2/history/get_creator
+/v2/history/get_deltas
+/v2/history/get_transacted_accounts
+/v2/history/get_transaction
+/v2/history/get_transfers
+```
 
 ## API
 
@@ -67,51 +78,63 @@ HYPERION_ENDPOINT=<Enter Hyperion Endpoint>  # "https://br.eosrio.io"
     -   [get_actions](#get_actions)
         -   [Parameters](#parameters-2)
         -   [Examples](#examples-3)
-    -   [get_creator](#get_creator)
+    -   [get_created_accounts](#get_created_accounts)
         -   [Parameters](#parameters-3)
         -   [Examples](#examples-4)
-    -   [get_key_accounts](#get_key_accounts)
+    -   [get_creator](#get_creator)
         -   [Parameters](#parameters-4)
         -   [Examples](#examples-5)
-    -   [get_tokens](#get_tokens)
+    -   [get_deltas](#get_deltas)
         -   [Parameters](#parameters-5)
         -   [Examples](#examples-6)
-    -   [get_transacted_accounts](#get_transacted_accounts)
+    -   [get_key_accounts](#get_key_accounts)
         -   [Parameters](#parameters-6)
         -   [Examples](#examples-7)
-    -   [get_transaction](#get_transaction)
+    -   [get_tokens](#get_tokens)
         -   [Parameters](#parameters-7)
         -   [Examples](#examples-8)
-    -   [get_transfers](#get_transfers)
+    -   [get_transacted_accounts](#get_transacted_accounts)
         -   [Parameters](#parameters-8)
         -   [Examples](#examples-9)
+    -   [get_transaction](#get_transaction)
+        -   [Parameters](#parameters-9)
+        -   [Examples](#examples-10)
+    -   [get_transfers](#get_transfers)
+        -   [Parameters](#parameters-10)
+        -   [Examples](#examples-11)
 -   [JsonRpc](#jsonrpc-1)
     -   [alive](#alive-1)
-        -   [Examples](#examples-10)
-    -   [get_abi_snapshot](#get_abi_snapshot-1)
-        -   [Parameters](#parameters-9)
-        -   [Examples](#examples-11)
-    -   [get_actions](#get_actions-1)
-        -   [Parameters](#parameters-10)
         -   [Examples](#examples-12)
-    -   [get_creator](#get_creator-1)
+    -   [get_abi_snapshot](#get_abi_snapshot-1)
         -   [Parameters](#parameters-11)
         -   [Examples](#examples-13)
-    -   [get_key_accounts](#get_key_accounts-1)
+    -   [get_actions](#get_actions-1)
         -   [Parameters](#parameters-12)
         -   [Examples](#examples-14)
-    -   [get_tokens](#get_tokens-1)
+    -   [get_created_accounts](#get_created_accounts-1)
         -   [Parameters](#parameters-13)
         -   [Examples](#examples-15)
-    -   [get_transacted_accounts](#get_transacted_accounts-1)
+    -   [get_creator](#get_creator-1)
         -   [Parameters](#parameters-14)
         -   [Examples](#examples-16)
-    -   [get_transaction](#get_transaction-1)
+    -   [get_deltas](#get_deltas-1)
         -   [Parameters](#parameters-15)
         -   [Examples](#examples-17)
-    -   [get_transfers](#get_transfers-1)
+    -   [get_key_accounts](#get_key_accounts-1)
         -   [Parameters](#parameters-16)
         -   [Examples](#examples-18)
+    -   [get_tokens](#get_tokens-1)
+        -   [Parameters](#parameters-17)
+        -   [Examples](#examples-19)
+    -   [get_transacted_accounts](#get_transacted_accounts-1)
+        -   [Parameters](#parameters-18)
+        -   [Examples](#examples-20)
+    -   [get_transaction](#get_transaction-1)
+        -   [Parameters](#parameters-19)
+        -   [Examples](#examples-21)
+    -   [get_transfers](#get_transfers-1)
+        -   [Parameters](#parameters-20)
+        -   [Examples](#examples-22)
 
 ### JsonRpc
 
@@ -210,11 +233,31 @@ for (const action of response.actions) {
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetActions>** get actions
 
+#### get_created_accounts
+
+[GET /v2/history/get_created_accounts](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_created_accounts)
+
+get created accounts
+
+##### Parameters
+
+-   `account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** created account
+
+##### Examples
+
+```javascript
+const response = await rpc.get_created_accounts("eosnationftw");
+console.log(response);
+// => {"accounts": [{"name":"eosnationdsp","trx_id":"728d4a4da36a98d9048080461dacaf975ad083e8158ef84edea60cc755ab2c1a","timestamp":"2019-02-28T22:36:45.000"}, ... ]}
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetCreatedAccounts>** get creator
+
 #### get_creator
 
 [GET /v2/history/get_creator](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_creator)
 
-get account creator
+get creator
 
 ##### Parameters
 
@@ -228,7 +271,30 @@ console.log(response);
 // => { account: 'eosnationftw', creator: 'gyztcmrvgqge', timestamp: '2018-06-10T13:06:43.500', ... }
 ```
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetAccountCreator>** get creator
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetCreator>** get creator
+
+#### get_deltas
+
+[GET /v2/history/get_deltas](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_deltas)
+
+get deltas
+
+##### Parameters
+
+-   `code` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** contract account
+-   `scope` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** table scope
+-   `table` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** table name
+-   `payer` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** payer account
+
+##### Examples
+
+```javascript
+const response = await rpc.get_deltas("eosio.token", "eosnationftw", "accounts", "eosnationftw");
+console.log(response);
+// => { "query_time": 19, "total": { "value": 486, "relation": "eq" }, "deltas": [ ... ] }
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetDeltas>** get deltas
 
 #### get_key_accounts
 
@@ -433,11 +499,31 @@ for (const action of response.actions) {
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetActions>** get actions
 
+#### get_created_accounts
+
+[GET /v2/history/get_created_accounts](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_created_accounts)
+
+get created accounts
+
+##### Parameters
+
+-   `account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** created account
+
+##### Examples
+
+```javascript
+const response = await rpc.get_created_accounts("eosnationftw");
+console.log(response);
+// => {"accounts": [{"name":"eosnationdsp","trx_id":"728d4a4da36a98d9048080461dacaf975ad083e8158ef84edea60cc755ab2c1a","timestamp":"2019-02-28T22:36:45.000"}, ... ]}
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetCreatedAccounts>** get creator
+
 #### get_creator
 
 [GET /v2/history/get_creator](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_creator)
 
-get account creator
+get creator
 
 ##### Parameters
 
@@ -451,7 +537,30 @@ console.log(response);
 // => { account: 'eosnationftw', creator: 'gyztcmrvgqge', timestamp: '2018-06-10T13:06:43.500', ... }
 ```
 
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetAccountCreator>** get creator
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetCreator>** get creator
+
+#### get_deltas
+
+[GET /v2/history/get_deltas](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_deltas)
+
+get deltas
+
+##### Parameters
+
+-   `code` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** contract account
+-   `scope` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** table scope
+-   `table` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** table name
+-   `payer` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** payer account
+
+##### Examples
+
+```javascript
+const response = await rpc.get_deltas("eosio.token", "eosnationftw", "accounts", "eosnationftw");
+console.log(response);
+// => { "query_time": 19, "total": { "value": 486, "relation": "eq" }, "deltas": [ ... ] }
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetDeltas>** get deltas
 
 #### get_key_accounts
 
