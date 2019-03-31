@@ -104,7 +104,7 @@ export class JsonRpc {
     }
 
     /**
-     * [GET /v2/history/alive](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_alive)
+     * [GET /v2/state/alive](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_alive)
      *
      * simple server healthcheck
      *
@@ -229,7 +229,7 @@ export class JsonRpc {
     }
 
     /**
-     * [GET/v2/history/get_key_accounts](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_key_accounts)
+     * [GET/v2/state/get_key_accounts](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_key_accounts)
      *
      * get account by public key
      *
@@ -249,7 +249,7 @@ export class JsonRpc {
     }
 
     /**
-     * [GET /v2/history/get_tokens](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_tokens)
+     * [GET /v2/state/get_tokens](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_tokens)
      *
      * get tokens
      *
