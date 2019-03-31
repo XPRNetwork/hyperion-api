@@ -151,8 +151,8 @@ export class JsonRpc {
      *
      * get actions based on notified account
      *
+     * @param {string} account notified account
      * @param {object} [options={}] Optional parameters
-     * @param {string} [options.account] notified account
      * @param {string} [options.filter] code::name filter
      * @param {number} [options.skip] skip [n] actions (pagination)
      * @param {number} [options.limit] limit of [n] actions per page
@@ -167,8 +167,7 @@ export class JsonRpc {
      * @returns {Promise<GetActions>} get actions
      * @example
      *
-     * const response = await rpc.get_actions({
-     *     account: "eoscafeblock",
+     * const response = await rpc.get_actions("eoscafeblock", {
      *     filter: "eosio.token:*",
      *     skip: 100,
      *     limit: 100,
@@ -179,8 +178,7 @@ export class JsonRpc {
      *     // => { act: { account: 'eosio.token', name: 'transfer', ... } }
      * }
      */
-    public get_actions(options: {
-        account?: string,
+    public get_actions(account: string, options: {
         filter?: string,
         skip?: number,
         limit?: number,
@@ -194,7 +192,7 @@ export class JsonRpc {
         act_account?: string,
     } = {}) {
         const params = {
-            account: options.account,
+            account,
             filter: options.filter,
             skip: options.skip,
             limit: options.limit,
