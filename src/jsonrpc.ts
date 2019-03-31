@@ -1,6 +1,6 @@
 import { V2_ALIVE, V2_GET_ABI_SNAPSHOT, V2_GET_ACTIONS, V2_GET_CREATOR, V2_GET_KEY_ACCOUNTS, V2_GET_TOKENS, V2_GET_TRANSACTED_ACCOUNTS, V2_GET_TRANSACTION, V2_GET_TRANSFERS } from "./endpoints";
 import { RpcError, RpcStatusError } from "./rpcerror";
-import { Alive, GetAbiSnapshot, GetAccountCreator, GetActions, GetKeyAccounts, GetTransactedAccounts, GetTransaction, GetTransfers } from "./types/api";
+import { Alive, GetAbiSnapshot, GetAccountCreator, GetActions, GetKeyAccounts, GetTokens, GetTransactedAccounts, GetTransaction, GetTransfers } from "./types/api";
 
 function queryParams(params: {[key: string]: any}) {
     const entries = [];
@@ -104,7 +104,7 @@ export class JsonRpc {
     }
 
     /**
-     * [GET /v2/state/alive](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_alive)
+     * [GET /v2/state/alive](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_alive)
      *
      * simple server healthcheck
      *
@@ -120,7 +120,7 @@ export class JsonRpc {
     }
 
     /**
-     * [GET /v2/history/get_abi_snapshot](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_abi_snapshot)
+     * [GET /v2/history/get_abi_snapshot](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_abi_snapshot)
      *
      * fetch contract abi at specific block
      *
@@ -147,7 +147,7 @@ export class JsonRpc {
     }
 
     /**
-     * [GET /v2/history/get_actions](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_actions)
+     * [GET /v2/history/get_actions](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_actions)
      *
      * get actions based on notified account
      *
@@ -209,7 +209,7 @@ export class JsonRpc {
     }
 
     /**
-     * [GET /v2/history/get_creator](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_creator)
+     * [GET /v2/history/get_creator](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_creator)
      *
      * get account creator
      *
@@ -229,7 +229,7 @@ export class JsonRpc {
     }
 
     /**
-     * [GET/v2/state/get_key_accounts](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_key_accounts)
+     * [GET/v2/state/get_key_accounts](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_get_key_accounts)
      *
      * get account by public key
      *
@@ -249,7 +249,7 @@ export class JsonRpc {
     }
 
     /**
-     * [GET /v2/state/get_tokens](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_tokens)
+     * [GET /v2/state/get_tokens](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_get_tokens)
      *
      * get tokens
      *
@@ -267,11 +267,11 @@ export class JsonRpc {
         const params = {
             account,
         };
-        return this.get<any>(V2_GET_TOKENS, params);
+        return this.get<GetTokens>(V2_GET_TOKENS, params);
     }
 
     /**
-     * [GET /v2/history/get_transacted_accounts](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_transacted_accounts)
+     * [GET /v2/history/get_transacted_accounts](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transacted_accounts)
      *
      * get all account that interacted with the source account provided
      *
@@ -310,7 +310,7 @@ export class JsonRpc {
     }
 
     /**
-     * [GET /v2/history/get_transaction](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_transaction)
+     * [GET /v2/history/get_transaction](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transaction)
      *
      * get all actions belonging to the same transaction
      *
@@ -332,7 +332,7 @@ export class JsonRpc {
     }
 
     /**
-     * [GET /v2/history/get_transfers](https://br.eosrio.io/v2/history/docs/index.html#/v2/get_v2_history_get_transfers)
+     * [GET /v2/history/get_transfers](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transfers)
      *
      * get token transfers utilizing the eosio.token standard
      *
