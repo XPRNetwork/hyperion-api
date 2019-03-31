@@ -5,21 +5,21 @@
 Using Yarn:
 
 ```bash
-yarn add @jafri/hyperion
+yarn add @eoscafe/hyperion
 ```
 
 or using NPM:
 
 ```bash
-npm install --save @jafri/hyperion
-```
+npm install --save @eoscafe/hyperion
+```eoscafe
 
 ## Quick Start
 
 **CommonJS**
 
 ```js
-const { JsonRpc } = require("@jafri/hyperion")
+const { JsonRpc } = require("@eoscafe/hyperion")
 const fetch = require("isomorphic-fetch")
 
 const endpoint = "https://eos.hyperion.eosrio.io"
@@ -29,7 +29,7 @@ const rpc = new JsonRpc(endpoint, { fetch })
 **TypeScript**
 
 ```ts
-import { JsonRpc } from "@jafri/hyperion"
+import { JsonRpc } from "@eoscafe/hyperion"
 import fetch from "isomorphic-fetch"
 
 const endpoint = "https://eos.hyperion.eosrio.io"
