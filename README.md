@@ -12,7 +12,7 @@ or using NPM:
 
 ```bash
 npm install --save @eoscafe/hyperion
-```eoscafe
+```
 
 ## Quick Start
 
