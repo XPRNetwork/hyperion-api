@@ -2,7 +2,7 @@ import { V2_ALIVE, V2_GET_ABI_SNAPSHOT, V2_GET_ACTIONS, V2_GET_CREATOR, V2_GET_K
 import { RpcError, RpcStatusError } from "./rpcerror";
 import { Alive, GetAbiSnapshot, GetCreatedAccounts, GetDeltas, GetCreator, GetActions, GetKeyAccounts, GetTokens, GetTransactedAccounts, GetTransaction, GetTransfers } from "./types/api";
 
-function queryParams(params: {[key: string]: any}) {
+function queryParams(params: { [key: string]: any }) {
     const entries = [];
     for (const key of Object.keys(params)) {
         const value = params[key];
@@ -387,6 +387,8 @@ export class JsonRpc {
      * @param {string} [options.to] destination account
      * @param {string} [options.symbol] token symbol
      * @param {string} [options.contract] token contract
+     * @param {number} [options.skip] skip [n] actions (pagination)
+     * @param {number} [options.limit] limit of [n] actions per page
      * @param {string} [options.after] filter after specified date (ISO8601)
      * @param {string} [options.before] filter before specified date (ISO8601)
      * @returns {Promise<GetTransfers>} transfers
@@ -403,6 +405,8 @@ export class JsonRpc {
         to?: string
         symbol?: string
         contract?: string
+        skip?: number
+        limit?: number
         after?: string,
         before?: string,
     } = {}) {
@@ -411,6 +415,8 @@ export class JsonRpc {
             to: options.to,
             symbol: options.symbol,
             contract: options.contract,
+            skip: options.skip,
+            limit: options.limit,
             after: options.after,
             before: options.before,
         };
