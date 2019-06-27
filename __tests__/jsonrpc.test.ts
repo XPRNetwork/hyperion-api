@@ -60,11 +60,6 @@ test("jsonrpc.get_creator", async () => {
     expect(!!response).toBeTruthy();
 });
 
-test("jsonrpc.get_tokens", async () => {
-    const response = await rpc.get_tokens("eoscafeblock");
-    expect(!!response).toBeTruthy();
-});
-
 test("jsonrpc.get_deltas", async () => {
     const response = await rpc.get_deltas("eosio.token", "eosnationftw", "accounts", "eosnationftw");
     expect(!!response).toBeTruthy();
