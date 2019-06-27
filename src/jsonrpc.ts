@@ -185,26 +185,13 @@ export class JsonRpc {
         sort?: string,
         after?: string,
         before?: string,
-        transfer_to?: string,
-        transfer_from?: string,
-        transfer_symbol?: string,
-        act_name?: string,
-        act_account?: string,
+        ["transfer.to"]?: string,
+        ["transfer.from"]?: string,
+        ["transfer.symbol"]?: string,
+        ["act.name"]?: string,
+        ["act.account"]?: string,
     } = {}) {
-        const params = {
-            account,
-            filter: options.filter,
-            skip: options.skip,
-            limit: options.limit,
-            sort: options.sort,
-            after: options.after,
-            before: options.before,
-            ["transfer.to"]: options.transfer_to,
-            ["transfer.from"]: options.transfer_from,
-            ["transfer.symbol"]: options.transfer_symbol,
-            ["act.name"]: options.act_name,
-            ["act.account"]: options.act_account,
-        };
+        const params = Object.assign({}, { account }, options);
         return this.get<GetActions<T>>(V2_GET_ACTIONS, params);
     }
 
@@ -323,12 +310,6 @@ export class JsonRpc {
      *
      * @param {string} account source account
      * @param {string} direction search direction (in, out or both)
-     * @param {object} [options={}] Optional parameters
-     * @param {string} [options.symbol] token symbol
-     * @param {string} [options.contract] token contract
-     * @param {number} [options.min] minimum value
-     * @param {number} [options.max] maximum value
-     * @param {number} [options.limit] query limit
      * @returns {Promise<GetTransactedAccounts>} transacted accounts
      * @example
      *
@@ -343,15 +324,7 @@ export class JsonRpc {
         max?: number,
         limit?: number,
     } = {}) {
-        const params = {
-            account,
-            direction,
-            symbol: options.symbol,
-            contract: options.contract,
-            min: options.min,
-            max: options.max,
-            limit: options.limit,
-        };
+        const params = Object.assign({}, { account, direction }, options);
         return this.get<GetTransactedAccounts>(V2_GET_TRANSACTED_ACCOUNTS, params);
     }
 
@@ -410,16 +383,7 @@ export class JsonRpc {
         after?: string,
         before?: string,
     } = {}) {
-        const params = {
-            from: options.from,
-            to: options.to,
-            symbol: options.symbol,
-            contract: options.contract,
-            skip: options.skip,
-            limit: options.limit,
-            after: options.after,
-            before: options.before,
-        };
+        const params = Object.assign({}, options);
         return this.get<GetTransfers>(V2_GET_TRANSFERS, params);
     }
 }
