@@ -1,6 +1,6 @@
-import { V2_ALIVE, V2_GET_ABI_SNAPSHOT, V2_GET_ACTIONS, V2_GET_CREATOR, V2_GET_KEY_ACCOUNTS, V2_GET_TOKENS, V2_GET_TRANSACTED_ACCOUNTS, V2_GET_TRANSACTION, V2_GET_TRANSFERS, V2_GET_CREATED_ACCOUNTS, V2_GET_DELTAS } from "./endpoints";
+import { V2_ALIVE, V2_GET_ABI_SNAPSHOT, V2_GET_ACTIONS, V2_GET_CREATOR, V2_GET_KEY_ACCOUNTS, V2_GET_TOKENS, V2_GET_TRANSACTED_ACCOUNTS, V2_GET_TRANSACTION, V2_GET_TRANSFERS, V2_GET_CREATED_ACCOUNTS, V2_GET_DELTAS, V2_GET_VOTERS } from './endpoints';
 import { RpcError, RpcStatusError } from "./rpcerror";
-import { Alive, GetAbiSnapshot, GetCreatedAccounts, GetDeltas, GetCreator, GetActions, GetKeyAccounts, GetTokens, GetTransactedAccounts, GetTransaction, GetTransfers } from "./types/api";
+import { Alive, GetAbiSnapshot, GetVoters, GetCreatedAccounts, GetDeltas, GetCreator, GetActions, GetKeyAccounts, GetTokens, GetTransactedAccounts, GetTransaction, GetTransfers } from "./types/api";
 
 function queryParams(params: { [key: string]: any }) {
     const entries = [];
@@ -144,6 +144,31 @@ export class JsonRpc {
             block,
         };
         return this.get<GetAbiSnapshot>(V2_GET_ABI_SNAPSHOT, params);
+    }
+
+    /**
+     * [GET /v2/state/get_voters](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_get_voters)
+     *
+     * get voters
+     *
+     * @param {object} [options={}] Optional parameters
+     * @param {string} [options.producer] filter by voted producer (comma separated)
+     * @param {boolean} [options.proxy] true or false
+     * @param {number} [options.skip] skip [n] actions (pagination)
+     * @param {number} [options.limit] limit of [n] actions per page
+     * @returns {Promise<GetVoters>} voters
+     * @example
+     *
+     * const response = await rpc.get_voters({ producer: "eoscafeblock", limit: 100 });
+     * console.log(response.voters);
+     * // => "[{
+     * //   "account": "guzdkmrtgage",
+     * //   "weight": 78434695236505280,
+     * //   "last_vote": 64804768
+     * // }]"
+     */
+    public get_voters(options: any) {
+        return this.get<GetVoters>(V2_GET_VOTERS, options);
     }
 
     /**
