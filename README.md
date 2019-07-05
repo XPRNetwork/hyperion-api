@@ -49,6 +49,7 @@ HYPERION_ENDPOINT=<Enter Hyperion Endpoint>  # "https://eos.hyperion.eosrio.io"
 /v2/state/alive
 /v2/state/get_key_accounts
 /v2/state/get_tokens
+/v2/state/get_voters
 
 # History
 /v2/history/get_abi_snapshot
