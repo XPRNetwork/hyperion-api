@@ -75,66 +75,74 @@ HYPERION_ENDPOINT=<Enter Hyperion Endpoint>  # "https://eos.hyperion.eosrio.io"
     -   [get_abi_snapshot](#get_abi_snapshot)
         -   [Parameters](#parameters-1)
         -   [Examples](#examples-2)
-    -   [get_actions](#get_actions)
+    -   [get_voters](#get_voters)
         -   [Parameters](#parameters-2)
         -   [Examples](#examples-3)
-    -   [get_created_accounts](#get_created_accounts)
+    -   [get_actions](#get_actions)
         -   [Parameters](#parameters-3)
         -   [Examples](#examples-4)
-    -   [get_creator](#get_creator)
+    -   [get_created_accounts](#get_created_accounts)
         -   [Parameters](#parameters-4)
         -   [Examples](#examples-5)
-    -   [get_deltas](#get_deltas)
+    -   [get_creator](#get_creator)
         -   [Parameters](#parameters-5)
         -   [Examples](#examples-6)
-    -   [get_key_accounts](#get_key_accounts)
+    -   [get_deltas](#get_deltas)
         -   [Parameters](#parameters-6)
         -   [Examples](#examples-7)
-    -   [get_tokens](#get_tokens)
+    -   [get_key_accounts](#get_key_accounts)
         -   [Parameters](#parameters-7)
         -   [Examples](#examples-8)
-    -   [get_transacted_accounts](#get_transacted_accounts)
+    -   [get_tokens](#get_tokens)
         -   [Parameters](#parameters-8)
         -   [Examples](#examples-9)
-    -   [get_transaction](#get_transaction)
+    -   [get_transacted_accounts](#get_transacted_accounts)
         -   [Parameters](#parameters-9)
         -   [Examples](#examples-10)
-    -   [get_transfers](#get_transfers)
+    -   [get_transaction](#get_transaction)
         -   [Parameters](#parameters-10)
         -   [Examples](#examples-11)
+    -   [get_transfers](#get_transfers)
+        -   [Parameters](#parameters-11)
+        -   [Examples](#examples-12)
 -   [JsonRpc](#jsonrpc-1)
     -   [alive](#alive-1)
-        -   [Examples](#examples-12)
-    -   [get_abi_snapshot](#get_abi_snapshot-1)
-        -   [Parameters](#parameters-11)
         -   [Examples](#examples-13)
-    -   [get_actions](#get_actions-1)
+    -   [get_abi_snapshot](#get_abi_snapshot-1)
         -   [Parameters](#parameters-12)
         -   [Examples](#examples-14)
-    -   [get_created_accounts](#get_created_accounts-1)
+    -   [get_voters](#get_voters-1)
         -   [Parameters](#parameters-13)
         -   [Examples](#examples-15)
-    -   [get_creator](#get_creator-1)
+    -   [get_actions](#get_actions-1)
         -   [Parameters](#parameters-14)
         -   [Examples](#examples-16)
-    -   [get_deltas](#get_deltas-1)
+    -   [get_created_accounts](#get_created_accounts-1)
         -   [Parameters](#parameters-15)
         -   [Examples](#examples-17)
-    -   [get_key_accounts](#get_key_accounts-1)
+    -   [get_creator](#get_creator-1)
         -   [Parameters](#parameters-16)
         -   [Examples](#examples-18)
-    -   [get_tokens](#get_tokens-1)
+    -   [get_deltas](#get_deltas-1)
         -   [Parameters](#parameters-17)
         -   [Examples](#examples-19)
-    -   [get_transacted_accounts](#get_transacted_accounts-1)
+    -   [get_key_accounts](#get_key_accounts-1)
         -   [Parameters](#parameters-18)
         -   [Examples](#examples-20)
-    -   [get_transaction](#get_transaction-1)
+    -   [get_tokens](#get_tokens-1)
         -   [Parameters](#parameters-19)
         -   [Examples](#examples-21)
-    -   [get_transfers](#get_transfers-1)
+    -   [get_transacted_accounts](#get_transacted_accounts-1)
         -   [Parameters](#parameters-20)
         -   [Examples](#examples-22)
+    -   [get_transaction](#get_transaction-1)
+        -   [Parameters](#parameters-21)
+        -   [Examples](#examples-23)
+    -   [get_transfers](#get_transfers-1)
+        -   [Parameters](#parameters-22)
+        -   [Examples](#examples-24)
+-   [Error](#error)
+-   [Error](#error-1)
 
 ### JsonRpc
 
@@ -194,6 +202,34 @@ for (const table of response.tables) {
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetAbiSnapshot>** abi snapshot
 
+#### get_voters
+
+[GET /v2/state/get_voters](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_get_voters)
+
+get voters
+
+##### Parameters
+
+-   `options` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.producer` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter by voted producer (comma separated)
+    -   `options.proxy` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** true or false
+    -   `options.skip` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** skip [n] actions (pagination)
+    -   `options.limit` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** limit of [n] actions per page
+
+##### Examples
+
+```javascript
+const response = await rpc.get_voters({ producer: "eoscafeblock", limit: 100 });
+console.log(response.voters);
+// => "[{
+//   "account": "guzdkmrtgage",
+//   "weight": 78434695236505280,
+//   "last_vote": 64804768
+// }]"
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetVoters>** voters
+
 #### get_actions
 
 [GET /v2/history/get_actions](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_actions)
@@ -348,12 +384,7 @@ get all account that interacted with the source account provided
 
 -   `account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** source account
 -   `direction` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** search direction (in, out or both)
--   `options` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
-    -   `options.symbol` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** token symbol
-    -   `options.contract` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** token contract
-    -   `options.min` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** minimum value
-    -   `options.max` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** maximum value
-    -   `options.limit` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** query limit
+-   `options`  
 
 ##### Examples
 
@@ -400,6 +431,8 @@ get token transfers utilizing the eosio.token standard
     -   `options.to` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** destination account
     -   `options.symbol` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** token symbol
     -   `options.contract` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** token contract
+    -   `options.skip` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** skip [n] actions (pagination)
+    -   `options.limit` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** limit of [n] actions per page
     -   `options.after` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter after specified date (ISO8601)
     -   `options.before` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter before specified date (ISO8601)
 
@@ -460,6 +493,34 @@ for (const table of response.tables) {
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetAbiSnapshot>** abi snapshot
 
+#### get_voters
+
+[GET /v2/state/get_voters](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_get_voters)
+
+get voters
+
+##### Parameters
+
+-   `options` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.producer` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter by voted producer (comma separated)
+    -   `options.proxy` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)?** true or false
+    -   `options.skip` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** skip [n] actions (pagination)
+    -   `options.limit` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** limit of [n] actions per page
+
+##### Examples
+
+```javascript
+const response = await rpc.get_voters({ producer: "eoscafeblock", limit: 100 });
+console.log(response.voters);
+// => "[{
+//   "account": "guzdkmrtgage",
+//   "weight": 78434695236505280,
+//   "last_vote": 64804768
+// }]"
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetVoters>** voters
+
 #### get_actions
 
 [GET /v2/history/get_actions](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_actions)
@@ -614,12 +675,7 @@ get all account that interacted with the source account provided
 
 -   `account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** source account
 -   `direction` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** search direction (in, out or both)
--   `options` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
-    -   `options.symbol` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** token symbol
-    -   `options.contract` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** token contract
-    -   `options.min` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** minimum value
-    -   `options.max` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** maximum value
-    -   `options.limit` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** query limit
+-   `options`  
 
 ##### Examples
 
@@ -666,6 +722,8 @@ get token transfers utilizing the eosio.token standard
     -   `options.to` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** destination account
     -   `options.symbol` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** token symbol
     -   `options.contract` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** token contract
+    -   `options.skip` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** skip [n] actions (pagination)
+    -   `options.limit` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** limit of [n] actions per page
     -   `options.after` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter after specified date (ISO8601)
     -   `options.before` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter before specified date (ISO8601)
 
@@ -680,3 +738,7 @@ for (const action of response.actions) {
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetTransfers>** transfers
+
+### Error
+
+### Error

@@ -12,3 +12,4 @@ export { GetTransfers } from "./history/get_transfers";
 export { Alive } from "./state/alive";
 export { GetKeyAccounts } from "./state/get_key_accounts";
 export { GetTokens } from "./state/get_tokens";
+export { GetVoters } from "./state/get_voters";
