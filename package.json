@@ -1,6 +1,6 @@
 {
   "name": "@eoscafe/hyperion",
-  "version": "0.1.0",
+  "version": "3.2.0",
   "description": "Hyperion HTTP API Javascript library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -46,5 +46,5 @@
   "bugs": {
     "url": "https://github.com/eoscafe/hyperion-api/issues"
   },
-  "gitHead": "5310d1a8bbd5bcbfc753c0a01a6b88bf0d0f08fa"
+  "gitHead": "caf681a98f7693d2d96e6394effe14d9d995a5ec"
 }
