@@ -1,6 +1,6 @@
 {
   "name": "@eoscafe/hyperion",
-  "version": "3.1.1",
+  "version": "0.1.0",
   "description": "Hyperion HTTP API Javascript library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -17,7 +17,6 @@
     "posttest": "tslint -p .",
     "docs": "tsc && documentation readme dist/index.js -s API"
   },
-
   "author": "Syed Jafri <syed.jafri2@ucalgary.ca>",
   "contributors": [
     "Denis Carriere <denis@eosnation.io>"
@@ -37,7 +36,6 @@
     "tslint": "*",
     "typescript": "*"
   },
-  "dependencies": {},
   "directories": {
     "example": "examples"
   },
@@ -47,5 +45,6 @@
   },
   "bugs": {
     "url": "https://github.com/eoscafe/hyperion-api/issues"
-  }
+  },
+  "gitHead": "5310d1a8bbd5bcbfc753c0a01a6b88bf0d0f08fa"
 }
