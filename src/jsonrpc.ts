@@ -203,16 +203,13 @@ export class JsonRpc {
      * @param {string} [account] account to get proposals for
      * @param {object} [options={}] Optional parameters
      * @param {string} [options.proposer] filter by proposer
+     * @param {string} [options.proposal] filter by proposal name
+     * @param {string} [options.account] filter by either requested or provided account
+     * @param {string} [options.requested] filter by requested account
+     * @param {string} [options.provided] filter by provided account
+     * @param {string} [options.track] total results to track (count) [number or true]
      * @param {number} [options.skip] skip [n] actions (pagination)
      * @param {number} [options.limit] limit of [n] actions per page
-     * @param {string} [options.sort] sort direction
-     * @param {string} [options.after] filter after specified date (ISO8601)
-     * @param {string} [options.before] filter before specified date (ISO8601)
-     * @param {string} [options.transfer_to] transfer filter to
-     * @param {string} [options.transfer_from]  transfer filter from
-     * @param {string} [options.transfer_symbol]  transfer filter symbol
-     * @param {string} [options.act_name]  act name
-     * @param {string} [options.act_account]  act account
      * @returns {Promise<GetProposals>} proposals
      */
     public get_proposals(options: {
