@@ -3,6 +3,8 @@ export const V2_ALIVE = "/v2/state/alive";
 export const V2_GET_KEY_ACCOUNTS = "/v2/state/get_key_accounts";
 export const V2_GET_TOKENS = "/v2/state/get_tokens";
 export const V2_GET_VOTERS = "/v2/state/get_voters";
+export const V2_GET_LINKS = "/v2/state/get_links";
+export const V2_GET_PROPOSALS = "/v2/state/get_proposals";
 
 // History
 export const V2_GET_ABI_SNAPSHOT = "/v2/history/get_abi_snapshot";

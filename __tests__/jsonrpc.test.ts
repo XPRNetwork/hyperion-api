@@ -14,6 +14,16 @@ test("jsonrpc.get_abi_snapshot", async () => {
     expect(!!response).toBeTruthy();
 });
 
+test("jsonrpc.get_links", async () => {
+    const response = await rpc.get_links("eosio", 200);
+    expect(!!response).toBeTruthy();
+});
+
+test("jsonrpc.get_proposals", async () => {
+    const response = await rpc.get_proposals("eosio", 200);
+    expect(!!response).toBeTruthy();
+});
+
 test("jsonrpc.get_actions", async () => {
     const response = await rpc.get_actions("eoscafeblock", {
         filter: "eosio.token:*",
