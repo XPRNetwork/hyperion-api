@@ -1,6 +1,6 @@
-import { V2_ALIVE, V2_GET_ABI_SNAPSHOT, V2_GET_ACTIONS, V2_GET_CREATOR, V2_GET_KEY_ACCOUNTS, V2_GET_TOKENS, V2_GET_TRANSACTED_ACCOUNTS, V2_GET_TRANSACTION, V2_GET_TRANSFERS, V2_GET_CREATED_ACCOUNTS, V2_GET_DELTAS, V2_GET_VOTERS } from './endpoints';
+import { V2_ALIVE, V2_GET_ABI_SNAPSHOT, V2_GET_ACTIONS, V2_GET_CREATOR, V2_GET_KEY_ACCOUNTS, V2_GET_TOKENS, V2_GET_TRANSACTED_ACCOUNTS, V2_GET_TRANSACTION, V2_GET_TRANSFERS, V2_GET_CREATED_ACCOUNTS, V2_GET_DELTAS, V2_GET_VOTERS, V2_GET_LINKS, V2_GET_PROPOSALS } from './endpoints';
 import { RpcError, RpcStatusError } from "./rpcerror";
-import { Alive, GetAbiSnapshot, GetVoters, GetCreatedAccounts, GetDeltas, GetCreator, GetActions, GetKeyAccounts, GetTokens, GetTransactedAccounts, GetTransaction, GetTransfers } from "./types/api";
+import { Alive, GetAbiSnapshot, GetVoters, GetCreatedAccounts, GetDeltas, GetCreator, GetActions, GetKeyAccounts, GetTokens, GetTransactedAccounts, GetTransaction, GetTransfers, GetLinks, GetProposals } from "./types/api";
 
 function queryParams(params: { [key: string]: any }) {
     const entries = [];
@@ -169,6 +169,63 @@ export class JsonRpc {
      */
     public get_voters(options: any) {
         return this.get<GetVoters>(V2_GET_VOTERS, options);
+    }
+
+    /**
+     * [GET /v2/state/get_links](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_links)
+     *
+     * get voters
+     *
+     * @param {string} [account] account to get links for
+     * @returns {Promise<GetLinks>} links
+     * @example
+     *
+     * const response = await rpc.get_links("eoscafeblock");
+     * console.log(response.links);
+     * // => "[{
+     * "block_num":26088072,
+     * "timestamp":"2019-11-22T23:17:42.000",
+     * "account":"eosriobrazil",
+     * "permission":"claim2",
+     * "code":"eosio",
+     * "action":"voteproducer"
+     * }]"
+     */
+    public get_links(account: string) {
+        return this.get<GetLinks>(V2_GET_LINKS, { account });
+    }
+
+    /**
+     * [GET /v2/state/get_proposals](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_get_proposals)
+     *
+     * get proposals
+     *
+     * @param {string} [account] account to get proposals for
+     * @param {object} [options={}] Optional parameters
+     * @param {string} [options.proposer] filter by proposer
+     * @param {number} [options.skip] skip [n] actions (pagination)
+     * @param {number} [options.limit] limit of [n] actions per page
+     * @param {string} [options.sort] sort direction
+     * @param {string} [options.after] filter after specified date (ISO8601)
+     * @param {string} [options.before] filter before specified date (ISO8601)
+     * @param {string} [options.transfer_to] transfer filter to
+     * @param {string} [options.transfer_from]  transfer filter from
+     * @param {string} [options.transfer_symbol]  transfer filter symbol
+     * @param {string} [options.act_name]  act name
+     * @param {string} [options.act_account]  act account
+     * @returns {Promise<GetProposals>} proposals
+     */
+    public get_proposals(options: {
+        proposer?: string,
+        proposal?: string,
+        account?: string,
+        requested?: string,
+        provided?: string,
+        executed?: boolean,
+        skip?: number,
+        limit?: number,
+    }) {
+        return this.get<GetProposals>(V2_GET_PROPOSALS, options);
     }
 
     /**

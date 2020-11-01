@@ -50,6 +50,7 @@ HYPERION_ENDPOINT=<Enter Hyperion Endpoint>  # "https://eos.hyperion.eosrio.io"
 /v2/state/get_key_accounts
 /v2/state/get_tokens
 /v2/state/get_voters
+/v2/state/get_links
 
 # History
 /v2/history/get_abi_snapshot
@@ -68,82 +69,89 @@ HYPERION_ENDPOINT=<Enter Hyperion Endpoint>  # "https://eos.hyperion.eosrio.io"
 
 #### Table of Contents
 
--   [JsonRpc](#jsonrpc)
-    -   [Parameters](#parameters)
-    -   [Examples](#examples)
-    -   [alive](#alive)
-        -   [Examples](#examples-1)
-    -   [get_abi_snapshot](#get_abi_snapshot)
-        -   [Parameters](#parameters-1)
-        -   [Examples](#examples-2)
-    -   [get_voters](#get_voters)
-        -   [Parameters](#parameters-2)
-        -   [Examples](#examples-3)
-    -   [get_actions](#get_actions)
-        -   [Parameters](#parameters-3)
-        -   [Examples](#examples-4)
-    -   [get_created_accounts](#get_created_accounts)
-        -   [Parameters](#parameters-4)
-        -   [Examples](#examples-5)
-    -   [get_creator](#get_creator)
-        -   [Parameters](#parameters-5)
-        -   [Examples](#examples-6)
-    -   [get_deltas](#get_deltas)
-        -   [Parameters](#parameters-6)
-        -   [Examples](#examples-7)
-    -   [get_key_accounts](#get_key_accounts)
-        -   [Parameters](#parameters-7)
-        -   [Examples](#examples-8)
-    -   [get_tokens](#get_tokens)
-        -   [Parameters](#parameters-8)
-        -   [Examples](#examples-9)
-    -   [get_transacted_accounts](#get_transacted_accounts)
-        -   [Parameters](#parameters-9)
-        -   [Examples](#examples-10)
-    -   [get_transaction](#get_transaction)
-        -   [Parameters](#parameters-10)
-        -   [Examples](#examples-11)
-    -   [get_transfers](#get_transfers)
-        -   [Parameters](#parameters-11)
-        -   [Examples](#examples-12)
--   [JsonRpc](#jsonrpc-1)
-    -   [alive](#alive-1)
-        -   [Examples](#examples-13)
-    -   [get_abi_snapshot](#get_abi_snapshot-1)
-        -   [Parameters](#parameters-12)
-        -   [Examples](#examples-14)
-    -   [get_voters](#get_voters-1)
-        -   [Parameters](#parameters-13)
-        -   [Examples](#examples-15)
-    -   [get_actions](#get_actions-1)
-        -   [Parameters](#parameters-14)
-        -   [Examples](#examples-16)
-    -   [get_created_accounts](#get_created_accounts-1)
-        -   [Parameters](#parameters-15)
-        -   [Examples](#examples-17)
-    -   [get_creator](#get_creator-1)
-        -   [Parameters](#parameters-16)
-        -   [Examples](#examples-18)
-    -   [get_deltas](#get_deltas-1)
-        -   [Parameters](#parameters-17)
-        -   [Examples](#examples-19)
-    -   [get_key_accounts](#get_key_accounts-1)
-        -   [Parameters](#parameters-18)
-        -   [Examples](#examples-20)
-    -   [get_tokens](#get_tokens-1)
-        -   [Parameters](#parameters-19)
-        -   [Examples](#examples-21)
-    -   [get_transacted_accounts](#get_transacted_accounts-1)
-        -   [Parameters](#parameters-20)
-        -   [Examples](#examples-22)
-    -   [get_transaction](#get_transaction-1)
-        -   [Parameters](#parameters-21)
-        -   [Examples](#examples-23)
-    -   [get_transfers](#get_transfers-1)
-        -   [Parameters](#parameters-22)
-        -   [Examples](#examples-24)
--   [Error](#error)
--   [Error](#error-1)
+- [Hyperion HTTP API Javascript library](#hyperion-http-api-javascript-library)
+  - [Installation](#installation)
+  - [Quick Start](#quick-start)
+  - [ENV Variables](#env-variables)
+  - [Supported Endpoints](#supported-endpoints)
+  - [API](#api)
+      - [Table of Contents](#table-of-contents)
+    - [JsonRpc](#jsonrpc)
+      - [Parameters](#parameters)
+      - [Examples](#examples)
+      - [alive](#alive)
+        - [Examples](#examples-1)
+      - [get_abi_snapshot](#get_abi_snapshot)
+        - [Parameters](#parameters-1)
+        - [Examples](#examples-2)
+      - [get_voters](#get_voters)
+        - [Parameters](#parameters-2)
+        - [Examples](#examples-3)
+      - [get_actions](#get_actions)
+        - [Parameters](#parameters-3)
+        - [Examples](#examples-4)
+      - [get_created_accounts](#get_created_accounts)
+        - [Parameters](#parameters-4)
+        - [Examples](#examples-5)
+      - [get_creator](#get_creator)
+        - [Parameters](#parameters-5)
+        - [Examples](#examples-6)
+      - [get_deltas](#get_deltas)
+        - [Parameters](#parameters-6)
+        - [Examples](#examples-7)
+      - [get_key_accounts](#get_key_accounts)
+        - [Parameters](#parameters-7)
+        - [Examples](#examples-8)
+      - [get_tokens](#get_tokens)
+        - [Parameters](#parameters-8)
+        - [Examples](#examples-9)
+      - [get_transacted_accounts](#get_transacted_accounts)
+        - [Parameters](#parameters-9)
+        - [Examples](#examples-10)
+      - [get_transaction](#get_transaction)
+        - [Parameters](#parameters-10)
+        - [Examples](#examples-11)
+      - [get_transfers](#get_transfers)
+        - [Parameters](#parameters-11)
+        - [Examples](#examples-12)
+    - [JsonRpc](#jsonrpc-1)
+      - [alive](#alive-1)
+        - [Examples](#examples-13)
+      - [get_abi_snapshot](#get_abi_snapshot-1)
+        - [Parameters](#parameters-12)
+        - [Examples](#examples-14)
+      - [get_voters](#get_voters-1)
+        - [Parameters](#parameters-13)
+        - [Examples](#examples-15)
+      - [get_actions](#get_actions-1)
+        - [Parameters](#parameters-14)
+        - [Examples](#examples-16)
+      - [get_created_accounts](#get_created_accounts-1)
+        - [Parameters](#parameters-15)
+        - [Examples](#examples-17)
+      - [get_creator](#get_creator-1)
+        - [Parameters](#parameters-16)
+        - [Examples](#examples-18)
+      - [get_deltas](#get_deltas-1)
+        - [Parameters](#parameters-17)
+        - [Examples](#examples-19)
+      - [get_key_accounts](#get_key_accounts-1)
+        - [Parameters](#parameters-18)
+        - [Examples](#examples-20)
+      - [get_tokens](#get_tokens-1)
+        - [Parameters](#parameters-19)
+        - [Examples](#examples-21)
+      - [get_transacted_accounts](#get_transacted_accounts-1)
+        - [Parameters](#parameters-20)
+        - [Examples](#examples-22)
+      - [get_transaction](#get_transaction-1)
+        - [Parameters](#parameters-21)
+        - [Examples](#examples-23)
+      - [get_transfers](#get_transfers-1)
+        - [Parameters](#parameters-22)
+        - [Examples](#examples-24)
+    - [Error](#error)
+    - [Error](#error-1)
 
 ### JsonRpc
 
@@ -185,7 +193,7 @@ fetch contract abi at specific block
 ##### Parameters
 
 -   `contract` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** contract account
--   `block`  
+-   `block`
 -   `number` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** target block
 
 ##### Examples
@@ -385,7 +393,7 @@ get all account that interacted with the source account provided
 
 -   `account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** source account
 -   `direction` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** search direction (in, out or both)
--   `options`  
+-   `options`
 
 ##### Examples
 
@@ -476,7 +484,7 @@ fetch contract abi at specific block
 ##### Parameters
 
 -   `contract` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** contract account
--   `block`  
+-   `block`
 -   `number` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** target block
 
 ##### Examples
@@ -676,7 +684,7 @@ get all account that interacted with the source account provided
 
 -   `account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** source account
 -   `direction` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** search direction (in, out or both)
--   `options`  
+-   `options`
 
 ##### Examples
 
