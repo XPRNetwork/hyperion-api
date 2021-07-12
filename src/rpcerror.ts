@@ -29,6 +29,8 @@ export class RpcStatusError extends Error {
     constructor(response: any) {
         if (response.status === 405) {
             super(response.statusText);
+        } else {
+            super()
         }
 
         Object.setPrototypeOf(this, RpcStatusError.prototype);

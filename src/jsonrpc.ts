@@ -269,6 +269,7 @@ export class JsonRpc {
         ["transfer.symbol"]?: string,
         ["act.name"]?: string,
         ["act.account"]?: string,
+        block_num?: number,
     } = {}) {
         const params = Object.assign({}, { account }, options);
         return this.get<GetActions<T>>(V2_GET_ACTIONS, params);
@@ -330,13 +331,13 @@ export class JsonRpc {
      * console.log(response);
      * // => { "query_time": 19, "total": { "value": 486, "relation": "eq" }, "deltas": [ ... ] }
      */
-    public get_deltas<T>(code: string, scope: string, table: string, payer: string) {
-        const params = {
+    public get_deltas<T>(code?: string, scope?: string, table?: string, payer?: string, options?: any) {
+        const params = Object.assign({}, options, {
             code,
             scope,
             table,
             payer,
-        };
+        });
         return this.get<GetDeltas<T>>(V2_GET_DELTAS, params);
     }
 
