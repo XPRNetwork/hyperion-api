@@ -5,7 +5,7 @@ export interface GetLinks {
       value: number,
       relation: string
     },
-    links: Link
+    links: Link[]
 }
 
 export interface Link {
