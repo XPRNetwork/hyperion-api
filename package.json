@@ -1,6 +1,6 @@
 {
   "name": "@eoscafe/hyperion",
-  "version": "3.2.9",
+  "version": "3.3.0",
   "description": "Hyperion HTTP API Javascript library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -34,7 +34,7 @@
     "ts-jest": "*",
     "ts-node": "*",
     "tslint": "*",
-    "typescript": "*"
+    "typescript": "^4.6.2"
   },
   "directories": {
     "example": "examples"
