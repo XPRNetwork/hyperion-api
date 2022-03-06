@@ -1,7 +1,6 @@
 import { V2_ALIVE, V2_GET_ABI_SNAPSHOT, V2_GET_ACTIONS, V2_GET_CREATOR, V2_GET_KEY_ACCOUNTS, V2_GET_TOKENS, V2_GET_TRANSACTED_ACCOUNTS, V2_GET_TRANSACTION, V2_GET_TRANSFERS, V2_GET_CREATED_ACCOUNTS, V2_GET_DELTAS, V2_GET_VOTERS, V2_GET_LINKS, V2_GET_PROPOSALS } from './endpoints';
 import { RpcError, RpcStatusError } from "./rpcerror";
 import { Alive, GetAbiSnapshot, GetVoters, GetCreatedAccounts, GetDeltas, GetCreator, GetActions, GetKeyAccounts, GetTokens, GetTransactedAccounts, GetTransaction, GetTransfers, GetLinks, GetProposals } from "./types/api";
-import fetch from 'cross-fetch'
 
 function queryParams(params: { [key: string]: any }) {
     const entries = [];
@@ -12,18 +11,8 @@ function queryParams(params: { [key: string]: any }) {
     return entries.join("&");
 }
 
-async function fetchWithTimeout(resource: string, options: { [key: string]: any, timeout: number }) {
-    const { timeout } = options;
-    
-    const controller = new AbortController();
-    const id = setTimeout(() => controller.abort(), timeout);
-    const response = await fetch(resource, {
-      ...(options || {}),
-      signal: controller.signal  
-    });
-    clearTimeout(id);
-    return response;
-}
+export type Fetch = (url: string | Request, init?: RequestInit) => Promise<Response>;
+declare const global: any;
 
 /**
  * JsonRpc
@@ -36,13 +25,14 @@ async function fetchWithTimeout(resource: string, options: { [key: string]: any,
  */
 export class JsonRpc {
     public endpoint: string;
-    public timeout: number = 8000;
+    public fetchBuiltin: Fetch;
 
-    constructor(endpoint: string, args: { timeout?: number } = {}) {
+    constructor(endpoint: string, args: { fetch?: Fetch } = {}) {
         this.endpoint = endpoint;
-
-        if (args.timeout) {
-            this.timeout = args.timeout
+        if (args.fetch) {
+            this.fetchBuiltin = args.fetch;
+        } else {
+            this.fetchBuiltin = (global as any).fetch;
         }
     }
 
@@ -58,10 +48,10 @@ export class JsonRpc {
         let response;
         let json;
         try {
-            response = await fetchWithTimeout(this.endpoint + path, {
+            const f = this.fetchBuiltin;
+            response = await f(this.endpoint + path, {
                 body: JSON.stringify(body),
                 method: "POST",
-                timeout: this.timeout
             });
             json = await response.json();
             if (json.processed && json.processed.except) {
@@ -90,9 +80,9 @@ export class JsonRpc {
         let json;
         const url = this.endpoint + path + "?" + queryParams(params);
         try {
-            response = await fetchWithTimeout(url, {
+            const f = this.fetchBuiltin;
+            response = await f(url, {
                 method: "GET",
-                timeout: this.timeout
             });
 
             if (response.status !== 200) {
