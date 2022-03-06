@@ -14,8 +14,12 @@
     "esModuleInterop": true,                  /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
 
     "skipLibCheck": true,
-    "lib": ["esnext", "dom"]
+    "lib": ["esnext", "dom"],
+    "useUnknownInCatchVariables": false
   },
   "types" : ["jest"],
-  "files": ["index.ts"]
+  "files": ["index.ts"],
+  "exclude": [
+    "node_modules/**/*"
+  ]
 }
