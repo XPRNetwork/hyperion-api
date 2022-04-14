@@ -1,6 +1,6 @@
 {
-  "name": "@eoscafe/hyperion",
-  "version": "3.3.2",
+  "name": "@proton/hyperion",
+  "version": "3.3.3",
   "description": "Hyperion HTTP API Javascript library",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,7 +21,7 @@
   "contributors": [
     "Denis Carriere <denis@eosnation.io>"
   ],
-  "homepage": "https://github.com/eoscafe/hyperion-api",
+  "homepage": "https://github.com/proton/hyperion-api",
   "license": "MIT",
   "devDependencies": {
     "@types/isomorphic-fetch": "*",
@@ -41,10 +41,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eoscafe/hyperion-api.git"
+    "url": "git+https://github.com/proton/hyperion-api.git"
   },
   "bugs": {
-    "url": "https://github.com/eoscafe/hyperion-api/issues"
+    "url": "https://github.com/proton/hyperion-api/issues"
   },
   "gitHead": "a1affc3ddd1c5626ac56d9e02a29a31683edea6d",
   "dependencies": {
