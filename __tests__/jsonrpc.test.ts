@@ -1,4 +1,3 @@
-import fetch from "isomorphic-fetch";
 import { JsonRpc } from "../";
 
 const endpoint = process.env.HYPERION_ENDPOINT || "https://br.eosrio.io";
