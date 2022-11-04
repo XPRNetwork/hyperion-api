@@ -69,89 +69,98 @@ HYPERION_ENDPOINT=<Enter Hyperion Endpoint>  # "https://eos.hyperion.eosrio.io"
 
 #### Table of Contents
 
-- [Hyperion HTTP API Javascript library](#hyperion-http-api-javascript-library)
-  - [Installation](#installation)
-  - [Quick Start](#quick-start)
-  - [ENV Variables](#env-variables)
-  - [Supported Endpoints](#supported-endpoints)
-  - [API](#api)
-      - [Table of Contents](#table-of-contents)
-    - [JsonRpc](#jsonrpc)
-      - [Parameters](#parameters)
-      - [Examples](#examples)
-      - [alive](#alive)
-        - [Examples](#examples-1)
-      - [get_abi_snapshot](#get_abi_snapshot)
-        - [Parameters](#parameters-1)
-        - [Examples](#examples-2)
-      - [get_voters](#get_voters)
-        - [Parameters](#parameters-2)
-        - [Examples](#examples-3)
-      - [get_actions](#get_actions)
-        - [Parameters](#parameters-3)
-        - [Examples](#examples-4)
-      - [get_created_accounts](#get_created_accounts)
-        - [Parameters](#parameters-4)
-        - [Examples](#examples-5)
-      - [get_creator](#get_creator)
-        - [Parameters](#parameters-5)
-        - [Examples](#examples-6)
-      - [get_deltas](#get_deltas)
-        - [Parameters](#parameters-6)
-        - [Examples](#examples-7)
-      - [get_key_accounts](#get_key_accounts)
-        - [Parameters](#parameters-7)
-        - [Examples](#examples-8)
-      - [get_tokens](#get_tokens)
-        - [Parameters](#parameters-8)
-        - [Examples](#examples-9)
-      - [get_transacted_accounts](#get_transacted_accounts)
-        - [Parameters](#parameters-9)
-        - [Examples](#examples-10)
-      - [get_transaction](#get_transaction)
-        - [Parameters](#parameters-10)
-        - [Examples](#examples-11)
-      - [get_transfers](#get_transfers)
-        - [Parameters](#parameters-11)
-        - [Examples](#examples-12)
-    - [JsonRpc](#jsonrpc-1)
-      - [alive](#alive-1)
-        - [Examples](#examples-13)
-      - [get_abi_snapshot](#get_abi_snapshot-1)
-        - [Parameters](#parameters-12)
-        - [Examples](#examples-14)
-      - [get_voters](#get_voters-1)
-        - [Parameters](#parameters-13)
-        - [Examples](#examples-15)
-      - [get_actions](#get_actions-1)
-        - [Parameters](#parameters-14)
-        - [Examples](#examples-16)
-      - [get_created_accounts](#get_created_accounts-1)
-        - [Parameters](#parameters-15)
-        - [Examples](#examples-17)
-      - [get_creator](#get_creator-1)
-        - [Parameters](#parameters-16)
-        - [Examples](#examples-18)
-      - [get_deltas](#get_deltas-1)
-        - [Parameters](#parameters-17)
-        - [Examples](#examples-19)
-      - [get_key_accounts](#get_key_accounts-1)
-        - [Parameters](#parameters-18)
-        - [Examples](#examples-20)
-      - [get_tokens](#get_tokens-1)
-        - [Parameters](#parameters-19)
-        - [Examples](#examples-21)
-      - [get_transacted_accounts](#get_transacted_accounts-1)
-        - [Parameters](#parameters-20)
-        - [Examples](#examples-22)
-      - [get_transaction](#get_transaction-1)
-        - [Parameters](#parameters-21)
-        - [Examples](#examples-23)
-      - [get_transfers](#get_transfers-1)
-        - [Parameters](#parameters-22)
-        - [Examples](#examples-24)
-    - [Error](#error)
-    - [Error](#error-1)
+-   [JsonRpc](#jsonrpc)
+    -   [Parameters](#parameters)
+    -   [Examples](#examples)
+    -   [alive](#alive)
+        -   [Examples](#examples-1)
+    -   [get_abi_snapshot](#get_abi_snapshot)
+        -   [Parameters](#parameters-1)
+        -   [Examples](#examples-2)
+    -   [get_voters](#get_voters)
+        -   [Parameters](#parameters-2)
+        -   [Examples](#examples-3)
+    -   [get_links](#get_links)
+        -   [Parameters](#parameters-3)
+        -   [Examples](#examples-4)
+    -   [get_proposals](#get_proposals)
+        -   [Parameters](#parameters-4)
+    -   [get_actions](#get_actions)
+        -   [Parameters](#parameters-5)
+        -   [Examples](#examples-5)
+    -   [get_created_accounts](#get_created_accounts)
+        -   [Parameters](#parameters-6)
+        -   [Examples](#examples-6)
+    -   [get_creator](#get_creator)
+        -   [Parameters](#parameters-7)
+        -   [Examples](#examples-7)
+    -   [get_deltas](#get_deltas)
+        -   [Parameters](#parameters-8)
+        -   [Examples](#examples-8)
+    -   [get_table_state](#get_table_state)
+        -   [Parameters](#parameters-9)
+        -   [Examples](#examples-9)
+    -   [get_key_accounts](#get_key_accounts)
+        -   [Parameters](#parameters-10)
+        -   [Examples](#examples-10)
+    -   [get_tokens](#get_tokens)
+        -   [Parameters](#parameters-11)
+        -   [Examples](#examples-11)
+    -   [get_transacted_accounts](#get_transacted_accounts)
+        -   [Parameters](#parameters-12)
+        -   [Examples](#examples-12)
+    -   [get_transaction](#get_transaction)
+        -   [Parameters](#parameters-13)
+        -   [Examples](#examples-13)
+    -   [get_transfers](#get_transfers)
+        -   [Parameters](#parameters-14)
+        -   [Examples](#examples-14)
+-   [JsonRpc](#jsonrpc-1)
+    -   [alive](#alive-1)
+        -   [Examples](#examples-15)
+    -   [get_abi_snapshot](#get_abi_snapshot-1)
+        -   [Parameters](#parameters-15)
+        -   [Examples](#examples-16)
+    -   [get_voters](#get_voters-1)
+        -   [Parameters](#parameters-16)
+        -   [Examples](#examples-17)
+    -   [get_links](#get_links-1)
+        -   [Parameters](#parameters-17)
+        -   [Examples](#examples-18)
+    -   [get_proposals](#get_proposals-1)
+        -   [Parameters](#parameters-18)
+    -   [get_actions](#get_actions-1)
+        -   [Parameters](#parameters-19)
+        -   [Examples](#examples-19)
+    -   [get_created_accounts](#get_created_accounts-1)
+        -   [Parameters](#parameters-20)
+        -   [Examples](#examples-20)
+    -   [get_creator](#get_creator-1)
+        -   [Parameters](#parameters-21)
+        -   [Examples](#examples-21)
+    -   [get_deltas](#get_deltas-1)
+        -   [Parameters](#parameters-22)
+        -   [Examples](#examples-22)
+    -   [get_table_state](#get_table_state-1)
+        -   [Parameters](#parameters-23)
+        -   [Examples](#examples-23)
+    -   [get_key_accounts](#get_key_accounts-1)
+        -   [Parameters](#parameters-24)
+        -   [Examples](#examples-24)
+    -   [get_tokens](#get_tokens-1)
+        -   [Parameters](#parameters-25)
+        -   [Examples](#examples-25)
+    -   [get_transacted_accounts](#get_transacted_accounts-1)
+        -   [Parameters](#parameters-26)
+        -   [Examples](#examples-26)
+    -   [get_transaction](#get_transaction-1)
+        -   [Parameters](#parameters-27)
+        -   [Examples](#examples-27)
+    -   [get_transfers](#get_transfers-1)
+        -   [Parameters](#parameters-28)
+        -   [Examples](#examples-28)
+-   [Error](#error)
+-   [Error](#error-1)
 
 ### JsonRpc
 
@@ -193,7 +202,7 @@ fetch contract abi at specific block
 ##### Parameters
 
 -   `contract` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** contract account
--   `block`
+-   `block`  
 -   `number` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** target block
 
 ##### Examples
@@ -238,6 +247,54 @@ console.log(response.voters);
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetVoters>** voters
+
+#### get_links
+
+[GET /v2/state/get_links](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_links)
+
+get voters
+
+##### Parameters
+
+-   `account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** account to get links for
+
+##### Examples
+
+```javascript
+const response = await rpc.get_links("eoscafeblock");
+console.log(response.links);
+// => "[{
+"block_num":26088072,
+"timestamp":"2019-11-22T23:17:42.000",
+"account":"eosriobrazil",
+"permission":"claim2",
+"code":"eosio",
+"action":"voteproducer"
+}]"
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetLinks>** links
+
+#### get_proposals
+
+[GET /v2/state/get_proposals](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_get_proposals)
+
+get proposals
+
+##### Parameters
+
+-   `options` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.proposer` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter by proposer
+    -   `options.proposal` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter by proposal name
+    -   `options.account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter by either requested or provided account
+    -   `options.requested` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter by requested account
+    -   `options.provided` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter by provided account
+    -   `options.track` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** total results to track (count) [number or true]
+    -   `options.skip` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** skip [n] actions (pagination)
+    -   `options.limit` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** limit of [n] actions per page
+-   `account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** account to get proposals for
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetProposals>** proposals
 
 #### get_actions
 
@@ -330,6 +387,7 @@ get deltas
 -   `scope` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** table scope
 -   `table` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** table name
 -   `payer` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** payer account
+-   `options`  
 
 ##### Examples
 
@@ -340,6 +398,29 @@ console.log(response);
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetDeltas>** get deltas
+
+#### get_table_state
+
+[GET /v2/history/get_table_state]\(<https://eos.hyperion.eosrio.io/v2/docs/static/index.html#/history/get_v2_history_get_table_state>
+
+get table state
+
+##### Parameters
+
+-   `code` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** contract account
+-   `table` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** table name
+-   `block_num` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** target block
+-   `after_key` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** last key for pagination
+
+##### Examples
+
+```javascript
+const response = await rpc.get_table_state("eosio.token", "stat", "1000", "");
+console.log(response);
+// => { "query_time": 19, "code": "eosio.token", "table": "stat", "block_num": 1000, "next_key": "........ehbo5-5459781",, "results": [ ... ] }
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetTableState>** get table state
 
 #### get_key_accounts
 
@@ -393,7 +474,7 @@ get all account that interacted with the source account provided
 
 -   `account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** source account
 -   `direction` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** search direction (in, out or both)
--   `options`
+-   `options`  
 
 ##### Examples
 
@@ -484,7 +565,7 @@ fetch contract abi at specific block
 ##### Parameters
 
 -   `contract` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** contract account
--   `block`
+-   `block`  
 -   `number` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)** target block
 
 ##### Examples
@@ -529,6 +610,54 @@ console.log(response.voters);
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetVoters>** voters
+
+#### get_links
+
+[GET /v2/state/get_links](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_links)
+
+get voters
+
+##### Parameters
+
+-   `account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** account to get links for
+
+##### Examples
+
+```javascript
+const response = await rpc.get_links("eoscafeblock");
+console.log(response.links);
+// => "[{
+"block_num":26088072,
+"timestamp":"2019-11-22T23:17:42.000",
+"account":"eosriobrazil",
+"permission":"claim2",
+"code":"eosio",
+"action":"voteproducer"
+}]"
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetLinks>** links
+
+#### get_proposals
+
+[GET /v2/state/get_proposals](https://eos.hyperion.eosrio.io/v2/docs/index.html#/state/get_v2_state_get_proposals)
+
+get proposals
+
+##### Parameters
+
+-   `options` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
+    -   `options.proposer` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter by proposer
+    -   `options.proposal` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter by proposal name
+    -   `options.account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter by either requested or provided account
+    -   `options.requested` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter by requested account
+    -   `options.provided` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter by provided account
+    -   `options.track` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** total results to track (count) [number or true]
+    -   `options.skip` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** skip [n] actions (pagination)
+    -   `options.limit` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** limit of [n] actions per page
+-   `account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** account to get proposals for
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetProposals>** proposals
 
 #### get_actions
 
@@ -621,6 +750,7 @@ get deltas
 -   `scope` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** table scope
 -   `table` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** table name
 -   `payer` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** payer account
+-   `options`  
 
 ##### Examples
 
@@ -631,6 +761,29 @@ console.log(response);
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetDeltas>** get deltas
+
+#### get_table_state
+
+[GET /v2/history/get_table_state]\(<https://eos.hyperion.eosrio.io/v2/docs/static/index.html#/history/get_v2_history_get_table_state>
+
+get table state
+
+##### Parameters
+
+-   `code` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** contract account
+-   `table` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** table name
+-   `block_num` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** target block
+-   `after_key` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** last key for pagination
+
+##### Examples
+
+```javascript
+const response = await rpc.get_table_state("eosio.token", "stat", "1000", "");
+console.log(response);
+// => { "query_time": 19, "code": "eosio.token", "table": "stat", "block_num": 1000, "next_key": "........ehbo5-5459781",, "results": [ ... ] }
+```
+
+Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetTableState>** get table state
 
 #### get_key_accounts
 
@@ -684,7 +837,7 @@ get all account that interacted with the source account provided
 
 -   `account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** source account
 -   `direction` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** search direction (in, out or both)
--   `options`
+-   `options`  
 
 ##### Examples
 

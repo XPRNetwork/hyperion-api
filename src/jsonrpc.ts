@@ -411,7 +411,7 @@ export class JsonRpc {
    *
    * const response = await rpc.get_table_state("eosio.token", "stat", "1000", "");
    * console.log(response);
-   * // => { "query_time": 19, "total": { "value": 486, "relation": "eq" }, "deltas": [ ... ] }
+   * // => { "query_time": 19, "code": "eosio.token", "table": "stat", "block_num": 1000, "next_key": "........ehbo5-5459781",, "results": [ ... ] }
    */
   public get_table_state<T>(
     code: string,
