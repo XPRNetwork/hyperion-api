@@ -33,7 +33,8 @@ import {
   GetLinks,
   GetProposals,
 } from "./types/api";
-import fetch from "cross-fetch";
+import fetch from 'node-fetch';
+import 'abortcontroller-polyfill/dist/polyfill-patch-fetch';
 
 function queryParams(params: { [key: string]: any }) {
   const entries = [];
@@ -93,7 +94,7 @@ export class JsonRpc {
    */
   public async post<T>(path: string, body: any): Promise<T> {
     let response;
-    let json;
+    let json: any;
     try {
       response = await fetchWithTimeout(this.endpoint + path, {
         body: JSON.stringify(body),
@@ -124,7 +125,7 @@ export class JsonRpc {
    */
   public async get<T>(path: string, params: any): Promise<T> {
     let response;
-    let json;
+    let json: any;
     const url = this.endpoint + path + "?" + queryParams(params);
     try {
       response = await fetchWithTimeout(url, {

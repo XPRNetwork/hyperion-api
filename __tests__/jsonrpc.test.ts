@@ -2,7 +2,7 @@ import fetch from "isomorphic-fetch";
 import { JsonRpc } from "../";
 
 const endpoint = process.env.HYPERION_ENDPOINT || "https://br.eosrio.io";
-const rpc = new JsonRpc(endpoint, { fetch });
+const rpc = new JsonRpc(endpoint);
 
 test("jsonrpc.alive", async () => {
   const response = await rpc.alive();
@@ -15,12 +15,12 @@ test("jsonrpc.get_abi_snapshot", async () => {
 });
 
 test("jsonrpc.get_links", async () => {
-  const response = await rpc.get_links("eosio", 200);
+  const response = await rpc.get_links("eosio");
   expect(!!response).toBeTruthy();
 });
 
 test("jsonrpc.get_proposals", async () => {
-  const response = await rpc.get_proposals("eosio", 200);
+  const response = await rpc.get_proposals({ proposer: "eosio" });
   expect(!!response).toBeTruthy();
 });
 

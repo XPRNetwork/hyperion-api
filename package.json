@@ -29,7 +29,6 @@
     "@types/mocha": "^5.2.7",
     "@types/node": "*",
     "documentation": "*",
-    "isomorphic-fetch": "*",
     "jest": "*",
     "ts-jest": "*",
     "ts-node": "*",
@@ -48,6 +47,8 @@
   },
   "gitHead": "a1affc3ddd1c5626ac56d9e02a29a31683edea6d",
   "dependencies": {
-    "cross-fetch": "^3.1.5"
+    "abortcontroller-polyfill": "^1.7.5",
+    "cross-fetch": "^3.1.5",
+    "node-fetch": "^3.2.10"
   }
 }
