@@ -1,7 +1,7 @@
 export interface GetDeltas<T> {
     query_time: number;
     total: Total;
-    deltas: Array<Delta<T>>;
+    deltas: Delta<T>[];
 }
 
 interface Delta<T> {

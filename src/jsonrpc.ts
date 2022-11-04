@@ -1,13 +1,11 @@
 import {
-  V2_ALIVE,
+  V2_HEALTH,
   V2_GET_ABI_SNAPSHOT,
   V2_GET_ACTIONS,
   V2_GET_CREATOR,
   V2_GET_KEY_ACCOUNTS,
   V2_GET_TOKENS,
-  V2_GET_TRANSACTED_ACCOUNTS,
   V2_GET_TRANSACTION,
-  V2_GET_TRANSFERS,
   V2_GET_CREATED_ACCOUNTS,
   V2_GET_DELTAS,
   V2_GET_TABLE_STATE,
@@ -17,7 +15,7 @@ import {
 } from "./endpoints";
 import { RpcError, RpcStatusError } from "./rpcerror";
 import {
-  Alive,
+  HealthV2,
   GetAbiSnapshot,
   GetVoters,
   GetCreatedAccounts,
@@ -27,13 +25,11 @@ import {
   GetActions,
   GetKeyAccounts,
   GetTokens,
-  GetTransactedAccounts,
   GetTransaction,
-  GetTransfers,
   GetLinks,
   GetProposals,
 } from "./types/api";
-require('isomorphic-fetch');
+import 'isomorphic-fetch';
 import 'abortcontroller-polyfill/dist/polyfill-patch-fetch';
 
 function queryParams(params: { [key: string]: any }) {
@@ -164,7 +160,7 @@ export class JsonRpc {
    * // => {"status": "OK"}
    */
   public alive() {
-    return this.get<Alive>(V2_ALIVE, {});
+    return this.get<HealthV2>(V2_HEALTH, {});
   }
 
   /**
@@ -426,7 +422,7 @@ export class JsonRpc {
       block_num,
       after_key,
     };
-    return this.get<GetDeltas<T>>(V2_GET_TABLE_STATE, params);
+    return this.get<GetTableState<T>>(V2_GET_TABLE_STATE, params);
   }
 
   /**
@@ -472,35 +468,6 @@ export class JsonRpc {
   }
 
   /**
-   * [GET /v2/history/get_transacted_accounts](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transacted_accounts)
-   *
-   * get all account that interacted with the source account provided
-   *
-   * @param {string} account source account
-   * @param {string} direction search direction (in, out or both)
-   * @returns {Promise<GetTransactedAccounts>} transacted accounts
-   * @example
-   *
-   * const response = await rpc.get_transacted_accounts("eoscafeblock", "in");
-   * console.log(response);
-   * // => { query_time: 268, account: 'eoscafeblock', total_in: 1092369.1827, inputs: [ ... ] }
-   */
-  public get_transacted_accounts(
-    account: string,
-    direction: string,
-    options: {
-      symbol?: string;
-      contract?: string;
-      min?: number;
-      max?: number;
-      limit?: number;
-    } = {}
-  ) {
-    const params = Object.assign({}, { account, direction }, options);
-    return this.get<GetTransactedAccounts>(V2_GET_TRANSACTED_ACCOUNTS, params);
-  }
-
-  /**
    * [GET /v2/history/get_transaction](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transaction)
    *
    * get all actions belonging to the same transaction
@@ -520,44 +487,5 @@ export class JsonRpc {
       id,
     };
     return this.get<GetTransaction<T>>(V2_GET_TRANSACTION, params);
-  }
-
-  /**
-   * [GET /v2/history/get_transfers](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transfers)
-   *
-   * get token transfers utilizing the eosio.token standard
-   *
-   * @param {object} [options={}] Optional parameters
-   * @param {string} [options.from] source account
-   * @param {string} [options.to] destination account
-   * @param {string} [options.symbol] token symbol
-   * @param {string} [options.contract] token contract
-   * @param {number} [options.skip] skip [n] actions (pagination)
-   * @param {number} [options.limit] limit of [n] actions per page
-   * @param {string} [options.after] filter after specified date (ISO8601)
-   * @param {string} [options.before] filter before specified date (ISO8601)
-   * @returns {Promise<GetTransfers>} transfers
-   * @example
-   *
-   * const response = await rpc.get_transfers({to: "eosnewyorkio"});
-   * for (const action of response.actions) {
-   *     console.log(action.act.data);
-   *     // => { from: 'eosio.bpay', to: 'eosnewyorkio', amount: 326.524, symbol: 'EOS', memo: 'producer block pay' }
-   * }
-   */
-  public get_transfers(
-    options: {
-      from?: string;
-      to?: string;
-      symbol?: string;
-      contract?: string;
-      skip?: number;
-      limit?: number;
-      after?: string;
-      before?: string;
-    } = {}
-  ) {
-    const params = Object.assign({}, options);
-    return this.get<GetTransfers>(V2_GET_TRANSFERS, params);
   }
 }

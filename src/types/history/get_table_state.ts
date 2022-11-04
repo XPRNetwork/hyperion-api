@@ -3,7 +3,7 @@ export interface GetTableState<T> {
   code: string;
   table: string;
   next_key: string;
-  results: Array<State<T>>;
+  results: State<T>[];
 }
 
 interface State<T> {

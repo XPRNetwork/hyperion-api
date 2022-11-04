@@ -4,7 +4,7 @@ export interface GetActions<T> {
   query_time: number;
   lib: number;
   total: Total;
-  actions: Array<Action<T>>;
+  actions: Action<T>[];
 }
 
 interface Total {
