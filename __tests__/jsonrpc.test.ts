@@ -1,6 +1,7 @@
 import { JsonRpc } from "../";
 
-const endpoint = process.env.HYPERION_ENDPOINT || "https://br.eosrio.io";
+const endpoint = process.env.HYPERION_ENDPOINT || "https://jungle3.cryptolions.io";
+
 const rpc = new JsonRpc(endpoint);
 
 test("jsonrpc.alive", async () => {
@@ -24,6 +25,8 @@ test("jsonrpc.get_proposals", async () => {
 });
 
 test("jsonrpc.get_actions", async () => {
+  jest.setTimeout(10000)
+
   const response = await rpc.get_actions("eoscafeblock", {
     filter: "eosio.token:*",
     skip: 100,
@@ -57,11 +60,6 @@ test("jsonrpc.get_tokens", async () => {
   expect(!!response).toBeTruthy();
 });
 
-test("jsonrpc.get_transacted_accounts", async () => {
-  const response = await rpc.get_transacted_accounts("eoscafeblock", "in");
-  expect(!!response).toBeTruthy();
-});
-
 test("jsonrpc.get_transaction", async () => {
   const response = await rpc.get_transaction(
     "42dacd5722001b734be46a2140917e06cd21d42425f927f506c07b4388b07f62"
@@ -69,15 +67,8 @@ test("jsonrpc.get_transaction", async () => {
   expect(!!response).toBeTruthy();
 });
 
-test("jsonrpc.get_transfers", async () => {
-  const response = await rpc.get_transfers({
-    to: "eosnewyorkio",
-  });
-  expect(!!response).toBeTruthy();
-});
-
 test("jsonrpc.get_creator", async () => {
-  const response = await rpc.get_creator("eoscafeblock");
+  const response = await rpc.get_creator("eosio");
   expect(!!response).toBeTruthy();
 });
 

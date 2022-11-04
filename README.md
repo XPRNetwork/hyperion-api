@@ -106,61 +106,49 @@ HYPERION_ENDPOINT=<Enter Hyperion Endpoint>  # "https://eos.hyperion.eosrio.io"
     -   [get_tokens](#get_tokens)
         -   [Parameters](#parameters-11)
         -   [Examples](#examples-11)
-    -   [get_transacted_accounts](#get_transacted_accounts)
+    -   [get_transaction](#get_transaction)
         -   [Parameters](#parameters-12)
         -   [Examples](#examples-12)
-    -   [get_transaction](#get_transaction)
-        -   [Parameters](#parameters-13)
-        -   [Examples](#examples-13)
-    -   [get_transfers](#get_transfers)
-        -   [Parameters](#parameters-14)
-        -   [Examples](#examples-14)
 -   [JsonRpc](#jsonrpc-1)
     -   [alive](#alive-1)
-        -   [Examples](#examples-15)
+        -   [Examples](#examples-13)
     -   [get_abi_snapshot](#get_abi_snapshot-1)
+        -   [Parameters](#parameters-13)
+        -   [Examples](#examples-14)
+    -   [get_voters](#get_voters-1)
+        -   [Parameters](#parameters-14)
+        -   [Examples](#examples-15)
+    -   [get_links](#get_links-1)
         -   [Parameters](#parameters-15)
         -   [Examples](#examples-16)
-    -   [get_voters](#get_voters-1)
-        -   [Parameters](#parameters-16)
-        -   [Examples](#examples-17)
-    -   [get_links](#get_links-1)
-        -   [Parameters](#parameters-17)
-        -   [Examples](#examples-18)
     -   [get_proposals](#get_proposals-1)
-        -   [Parameters](#parameters-18)
+        -   [Parameters](#parameters-16)
     -   [get_actions](#get_actions-1)
+        -   [Parameters](#parameters-17)
+        -   [Examples](#examples-17)
+    -   [get_created_accounts](#get_created_accounts-1)
+        -   [Parameters](#parameters-18)
+        -   [Examples](#examples-18)
+    -   [get_creator](#get_creator-1)
         -   [Parameters](#parameters-19)
         -   [Examples](#examples-19)
-    -   [get_created_accounts](#get_created_accounts-1)
+    -   [get_deltas](#get_deltas-1)
         -   [Parameters](#parameters-20)
         -   [Examples](#examples-20)
-    -   [get_creator](#get_creator-1)
+    -   [get_table_state](#get_table_state-1)
         -   [Parameters](#parameters-21)
         -   [Examples](#examples-21)
-    -   [get_deltas](#get_deltas-1)
+    -   [get_key_accounts](#get_key_accounts-1)
         -   [Parameters](#parameters-22)
         -   [Examples](#examples-22)
-    -   [get_table_state](#get_table_state-1)
+    -   [get_tokens](#get_tokens-1)
         -   [Parameters](#parameters-23)
         -   [Examples](#examples-23)
-    -   [get_key_accounts](#get_key_accounts-1)
+    -   [get_transaction](#get_transaction-1)
         -   [Parameters](#parameters-24)
         -   [Examples](#examples-24)
-    -   [get_tokens](#get_tokens-1)
-        -   [Parameters](#parameters-25)
-        -   [Examples](#examples-25)
-    -   [get_transacted_accounts](#get_transacted_accounts-1)
-        -   [Parameters](#parameters-26)
-        -   [Examples](#examples-26)
-    -   [get_transaction](#get_transaction-1)
-        -   [Parameters](#parameters-27)
-        -   [Examples](#examples-27)
-    -   [get_transfers](#get_transfers-1)
-        -   [Parameters](#parameters-28)
-        -   [Examples](#examples-28)
--   [Error](#error)
--   [Error](#error-1)
+-   [RpcError](#rpcerror)
+-   [RpcStatusError](#rpcstatuserror)
 
 ### JsonRpc
 
@@ -464,28 +452,6 @@ for (const token of response.tokens) {
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetTokens>** get tokens
 
-#### get_transacted_accounts
-
-[GET /v2/history/get_transacted_accounts](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transacted_accounts)
-
-get all account that interacted with the source account provided
-
-##### Parameters
-
--   `account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** source account
--   `direction` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** search direction (in, out or both)
--   `options`  
-
-##### Examples
-
-```javascript
-const response = await rpc.get_transacted_accounts("eoscafeblock", "in");
-console.log(response);
-// => { query_time: 268, account: 'eoscafeblock', total_in: 1092369.1827, inputs: [ ... ] }
-```
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetTransactedAccounts>** transacted accounts
-
 #### get_transaction
 
 [GET /v2/history/get_transaction](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transaction)
@@ -507,36 +473,6 @@ for (const action of response.actions) {
 ```
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetTransaction>** transaction
-
-#### get_transfers
-
-[GET /v2/history/get_transfers](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transfers)
-
-get token transfers utilizing the eosio.token standard
-
-##### Parameters
-
--   `options` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
-    -   `options.from` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** source account
-    -   `options.to` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** destination account
-    -   `options.symbol` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** token symbol
-    -   `options.contract` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** token contract
-    -   `options.skip` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** skip [n] actions (pagination)
-    -   `options.limit` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** limit of [n] actions per page
-    -   `options.after` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter after specified date (ISO8601)
-    -   `options.before` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter before specified date (ISO8601)
-
-##### Examples
-
-```javascript
-const response = await rpc.get_transfers({to: "eosnewyorkio"});
-for (const action of response.actions) {
-    console.log(action.act.data);
-    // => { from: 'eosio.bpay', to: 'eosnewyorkio', amount: 326.524, symbol: 'EOS', memo: 'producer block pay' }
-}
-```
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetTransfers>** transfers
 
 ### JsonRpc
 
@@ -827,28 +763,6 @@ for (const token of response.tokens) {
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetTokens>** get tokens
 
-#### get_transacted_accounts
-
-[GET /v2/history/get_transacted_accounts](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transacted_accounts)
-
-get all account that interacted with the source account provided
-
-##### Parameters
-
--   `account` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** source account
--   `direction` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** search direction (in, out or both)
--   `options`  
-
-##### Examples
-
-```javascript
-const response = await rpc.get_transacted_accounts("eoscafeblock", "in");
-console.log(response);
-// => { query_time: 268, account: 'eoscafeblock', total_in: 1092369.1827, inputs: [ ... ] }
-```
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetTransactedAccounts>** transacted accounts
-
 #### get_transaction
 
 [GET /v2/history/get_transaction](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transaction)
@@ -871,36 +785,6 @@ for (const action of response.actions) {
 
 Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetTransaction>** transaction
 
-#### get_transfers
+### RpcError
 
-[GET /v2/history/get_transfers](https://eos.hyperion.eosrio.io/v2/docs/index.html#/history/get_v2_history_get_transfers)
-
-get token transfers utilizing the eosio.token standard
-
-##### Parameters
-
--   `options` **[object](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object)** Optional parameters (optional, default `{}`)
-    -   `options.from` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** source account
-    -   `options.to` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** destination account
-    -   `options.symbol` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** token symbol
-    -   `options.contract` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** token contract
-    -   `options.skip` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** skip [n] actions (pagination)
-    -   `options.limit` **[number](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Number)?** limit of [n] actions per page
-    -   `options.after` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter after specified date (ISO8601)
-    -   `options.before` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)?** filter before specified date (ISO8601)
-
-##### Examples
-
-```javascript
-const response = await rpc.get_transfers({to: "eosnewyorkio"});
-for (const action of response.actions) {
-    console.log(action.act.data);
-    // => { from: 'eosio.bpay', to: 'eosnewyorkio', amount: 326.524, symbol: 'EOS', memo: 'producer block pay' }
-}
-```
-
-Returns **[Promise](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Promise)&lt;GetTransfers>** transfers
-
-### Error
-
-### Error
+### RpcStatusError
