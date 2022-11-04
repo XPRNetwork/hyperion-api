@@ -33,7 +33,7 @@ import {
   GetLinks,
   GetProposals,
 } from "./types/api";
-import fetch from 'node-fetch';
+require('isomorphic-fetch');
 import 'abortcontroller-polyfill/dist/polyfill-patch-fetch';
 
 function queryParams(params: { [key: string]: any }) {

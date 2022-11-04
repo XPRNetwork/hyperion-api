@@ -29,10 +29,10 @@
     "@types/mocha": "^5.2.7",
     "@types/node": "*",
     "documentation": "*",
-    "jest": "*",
-    "ts-jest": "*",
-    "ts-node": "*",
-    "tslint": "*",
+    "jest": "29.0.3",
+    "ts-jest": "29.0.3",
+    "ts-node": "10.9.1",
+    "tslint": "6.1.3",
     "typescript": "^4.6.2"
   },
   "directories": {
@@ -47,8 +47,10 @@
   },
   "gitHead": "a1affc3ddd1c5626ac56d9e02a29a31683edea6d",
   "dependencies": {
+    "@types/node-fetch": "^2.6.2",
     "abortcontroller-polyfill": "^1.7.5",
     "cross-fetch": "^3.1.5",
+    "isomorphic-fetch": "^3.0.0",
     "node-fetch": "^3.2.10"
   }
 }
